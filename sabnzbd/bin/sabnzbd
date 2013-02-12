@@ -1,0 +1,28 @@
+#!/bin/sh
+#/ Usage: sabnzbd {start|stop|restart}
+
+if [ -z "$SABNZBD_URL" ]; then
+  echo "\$SABNZBD_URL is not set"
+  exit 1
+fi
+
+if [ -z "$SABNZBD_API_KEY" ]; then
+  echo "\$SABNZBD_API_KEY is not set"
+  exit 1
+fi
+
+case "$1" in
+  start)
+    $HOME/.sabnzbd/src/SABnzbd/SABnzbd.py -d -f ~/.sabnzbd/sabnzbd.ini
+    ;;
+  stop)
+    curl -s "http://$SABNZBD_URL/sabnzbd/api?mode=shutdown&apikey=$SABNZBD_API_KEY"
+    ;;
+  restart)
+    curl -s "http://$SABNZBD_URL/sabnzbd/api?mode=restart&apikey=$SABNZBD_API_KEY"
+    ;;
+  *)
+    grep '^#/' < "$0" | cut -c4- >&2
+    exit 1
+    ;;
+esac

@@ -1,0 +1,30 @@
+*filter
+
+# Allow all loopback traffic
+-A INPUT -i lo -j ACCEPT
+
+# Allow established inbound connections
+-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+# Allow outbound traffic
+-A OUTPUT -j ACCEPT
+
+{% for port in accept_tcp_ports -%}
+-A INPUT -p tcp -m state --state NEW --dport {{ port }} -j ACCEPT
+{% endfor %}
+
+{% for port in accept_udp_ports -%}
+-A INPUT -p udp -m state --state NEW --dport {{ port }} -j ACCEPT
+{% endfor %}
+
+# ping
+-A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT
+
+# Log iptables denied calls
+-A INPUT -m limit --limit 5/min -j LOG --log-prefix "iptables denied: " --log-level 7
+
+# Reject everything else
+-A INPUT -j REJECT
+-A FORWARD -j REJECT
+
+COMMIT

@@ -1,0 +1,15 @@
+ChallengeResponseAuthentication no
+PasswordAuthentication no
+PermitRootLogin no
+Port 22
+PrintLastLog yes
+PrintMotd no
+Protocol 2
+PubkeyAuthentication yes
+Subsystem sftp /usr/lib/openssh/sftp-server
+TCPKeepAlive yes
+UseDNS no
+UsePAM yes
+{% if 'allowed_users' in pillar %}
+AllowUsers {{ pillar.allowed_users|join(" ") }}
+{% endif %}

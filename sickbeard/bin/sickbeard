@@ -1,0 +1,28 @@
+#!/bin/sh
+#/ Usage: sickbeard {start|stop|restart}
+
+if [ -z "$SICKBEARD_URL" ]; then
+  echo "\$SICKBEARD_URL is not set"
+  exit 1
+fi
+
+if [ -z "$SICKBEARD_API_KEY" ]; then
+  echo "\$SICKBEARD_API_KEY is not set"
+  exit 1
+fi
+
+case "$1" in
+  start)
+    $HOME/.sickbeard/src/SickBeard.py -q --daemon --nolaunch > /dev/null 2>&1 &
+    ;;
+  stop)
+    curl -s "http://$SICKBEARD_URL/api/$SICKBEARD_API_KEY/?cmd=sb.shutdown" > /dev/null
+    ;;
+  restart)
+    curl -s "http://$SICKBEARD_URL/api/$SICKBEARD_API_KEY/?cmd=sb.restart" > /dev/null
+    ;;
+  *)
+    grep '^#/' < "$0" | cut -c4- >&2
+    exit 1
+    ;;
+esac
