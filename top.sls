@@ -3,6 +3,7 @@ base:
     - debsecan
     - iptables
     - logcheck
+    - ntp
     - packages
     - postfix
     - salt
