@@ -8,9 +8,15 @@ logcheck:
     - require:
         - pkg: logcheck
 
-/etc/logcheck/ignore.d.server/avahi-daemon:
+/etc/logcheck/ignore.d.server/local-avahi-daemon:
   file.managed:
-    - source: salt://logcheck/etc/logcheck/ignore.server.d/avahi-daemon
+    - source: salt://logcheck/etc/logcheck/ignore.server.d/local-avahi-daemon
+    - require:
+        - pkg: logcheck
+
+/etc/logcheck/ignore.d.server/local-iptables:
+  file.managed:
+    - source: salt://logcheck/etc/logcheck/ignore.server.d/local-iptables
     - require:
         - pkg: logcheck
 
