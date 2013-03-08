@@ -1,7 +1,7 @@
 /usr/local/bin/earl:
   file.managed:
     - source: https://raw.github.com/djl/earl/master/bin/earl
-    - source_hash: sha1=78b90c219bd4f2ee44b84cfaef701ec683cf91e2
+    - source_hash: sha1=7faee8461df5421ecb3936959fe0b88a2cc8482e
     - mode: 755
 
 /usr/local/bin/julian:
