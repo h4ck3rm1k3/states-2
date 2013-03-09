@@ -11,11 +11,11 @@ base:
     - sudo
     - timezones
     - users
-  'jupiter':
+  'jupiter.djl.im':
     - misc.jupiter
     - sabnzbd
     - sickbeard
     - smartmontools
-  'neptune':
+  'neptune.djl.im':
     - misc.neptune
     - smartmontools
