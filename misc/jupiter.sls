@@ -4,8 +4,8 @@
     - source_hash: sha1=7faee8461df5421ecb3936959fe0b88a2cc8482e
     - mode: 755
 
-/usr/local/bin/julian:
+/usr/local/bin/smash:
   file.managed:
-    - source: https://raw.github.com/djl/julian/master/bin/julian
-    - source_hash: sha1=579ceae3f50e7180a242992679c7541ec123d719
+    - source: https://raw.github.com/djl/smash/master/bin/smash
+    - source_hash: sha1=86ac1a5d1e3547a332dd847fea0804af6ce0414d
     - mode: 755
