@@ -4,7 +4,9 @@
   user.present:
     - home: /home/{{ user }}
     - shell: {{ args.get('shell', '/bin/bash') }}
+    {% if not args.get('keep_password', True) %}
     - password: "!"
+    {% endif %}
     - groups:
     {% for group in args['groups'] %}
       - {{ group }}
