@@ -7,5 +7,5 @@
 /usr/local/bin/smash:
   file.managed:
     - source: https://raw.github.com/djl/smash/master/bin/smash
-    - source_hash: sha1=2cd240883f8badf0689712e87d06aeb1e9faecb6
+    - source_hash: sha1=b12458e762dc974f0a58d7a183729a1cb4a09106
     - mode: 755
