@@ -36,16 +36,4 @@
   ssh_auth.present:
     - user: {{ user }}
     - comment: {{ args['ssh_auth']['comment'] }}
-    - require:
-      - user: {{ user }}
-
-# home directory
-/home/{{ user }}:
-  file.directory:
-    - user: {{ user }}
-    - group: {{ user }}
-    - mode: 700
-    - require:
-      - user: {{ user }}
-      - group: {{ user }}
 {% endfor %}
