@@ -8,6 +8,7 @@
     - password: "!"
     {% endif %}
     - groups:
+      - {{ user }}
     {% for group in args['groups'] %}
       - {{ group }}
     {% endfor %}
