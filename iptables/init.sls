@@ -13,8 +13,8 @@ iptables:
     - source: salt://iptables/etc/iptables/rules.jinja
     - template: jinja
     - context:
-      accept_tcp_ports: {{ pillar.accept_tcp_ports or [] }}
-      accept_udp_ports: {{ pillar.accept_udp_ports or [] }}
+      accept_tcp_ports: {{ pillar.get('accept_tcp_ports', []) }}
+      accept_udp_ports: {{ pillar.get('accept_udp_ports', []) }}
     - require:
       - pkg: iptables
       - file: /etc/iptables
