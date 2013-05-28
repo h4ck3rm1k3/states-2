@@ -2,10 +2,10 @@ base:
   '*':
     - debsecan
     - development
+    - extra_packages
     - iptables
     - logcheck
     - ntp
-    - packages
     - postfix
     - salt
     - ssh
