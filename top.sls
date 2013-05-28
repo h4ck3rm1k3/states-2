@@ -1,6 +1,7 @@
 base:
   '*':
     - debsecan
+    - development
     - iptables
     - logcheck
     - ntp
