@@ -19,6 +19,11 @@ iptables:
       - pkg: iptables
       - file: /etc/iptables
 
+/etc/network/if-pre-up.d/iptables:
+  file.managed:
+    - source: salt://iptables/etc/network/if-pre-up.d/iptables
+    - mode: 700
+
 iptables-restore < /etc/iptables/rules:
   cmd.wait:
     - watch:
