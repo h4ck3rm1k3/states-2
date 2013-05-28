@@ -11,17 +11,17 @@
 
 {% if accept_tcp_ports %}
 # TCP connections
-{%- for port in accept_tcp_ports -%}
+{% for port in accept_tcp_ports %}
 -A INPUT -p tcp -m state --state NEW --dport {{ port }} -j ACCEPT
-{%- endfor -%}
-{%- endif -%}
+{% endfor %}
+{% endif %}
 
 {% if accept_udp_ports %}
 # UDP connections
-{%- for port in accept_udp_ports -%}
+{% for port in accept_udp_ports %}
 -A INPUT -p udp -m state --state NEW --dport {{ port }} -j ACCEPT
-{%- endfor -%}
-{%- endif -%}
+{% endfor %}
+{% endif %}
 
 # ping
 -A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT
