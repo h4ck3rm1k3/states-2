@@ -1,5 +1,5 @@
 devpkgs:
-  pkgs.installed:
+  pkg.installed:
     - pkgs:
         - git
         - vim
