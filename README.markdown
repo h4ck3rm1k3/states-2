@@ -33,8 +33,8 @@ Example Pillar data
 
 ### timezone
 
-   # What time is it?
-   timezone: "Europe/London"
+    # What time is it?
+    timezone: "Europe/London"
 
 
 ### users
