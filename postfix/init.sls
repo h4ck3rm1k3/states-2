@@ -25,10 +25,3 @@ postfix:
     - target: {{ target }}
 {% endfor %}
 {% endif %}
-
-{% if 'root_alias' in pillar.keys() %}
-root_alias:
-  alias.present:
-    - name: root
-    - target: {{ pillar['root_alias'] }}
-{% endif %}
