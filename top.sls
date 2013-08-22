@@ -6,7 +6,7 @@ base:
     - iptables
     - logcheck
     - ntp
-    - postfix
+    - postfix.common
     - salt
     - ssh
     - sudo
@@ -14,9 +14,11 @@ base:
     - users
   'jupiter.djl.im':
     - misc.jupiter
+    - postfix.outbound
     - sabnzbd
     - sickbeard
     - smartmontools
   'neptune.djl.im':
     - misc.neptune
+    - postfix.outbound
     - smartmontools
