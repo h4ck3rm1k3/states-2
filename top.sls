@@ -22,6 +22,7 @@ base:
     - misc.neptune
     - postfix.outbound
     - smartmontools
+    - xbmc
   'wilde.djl.im':
     - postfix.outbound
     - znc
