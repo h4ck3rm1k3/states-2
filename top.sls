@@ -1,6 +1,5 @@
 base:
   '*':
-    - debsecan
     - development
     - extra_packages
     - iptables
@@ -13,6 +12,7 @@ base:
     - timezones
     - users
   'jupiter.djl.im':
+    - debsecan
     - misc.jupiter
     - postfix.outbound
     - sabnzbd
@@ -24,5 +24,6 @@ base:
     - smartmontools
     - xbmc
   'wilde.djl.im':
+    - debsecan
     - postfix.outbound
     - znc
