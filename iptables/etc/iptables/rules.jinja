@@ -9,6 +9,9 @@
 # Allow outbound traffic
 -A OUTPUT -j ACCEPT
 
+# Allow SSH
+-A INPUT -p tcp -m state --state NEW --dport 22 -j ACCEPT
+
 {% if accept_tcp_ports %}
 # TCP connections
 {% for port in accept_tcp_ports %}
