@@ -1,0 +1,9 @@
+<advancedsettings>
+  <network>
+    <disableipv6>true</disableipv6>
+  </network>
+</advancedsettings>
+
+<videolibrary>
+    <dateadded>0</dateadded>
+</videolibrary>

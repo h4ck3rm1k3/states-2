@@ -13,3 +13,10 @@ xbmc:
     - group: xbmc
     - require:
       - pkg: xbmc
+
+/home/xbmc/.xbmc/userdata/advancedsettings.xml:
+  file.managed:
+    - user: xbmc
+    - group: xbmc
+    - require:
+      - pkg: xbmc
