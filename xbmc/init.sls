@@ -1,8 +1,7 @@
 xbmc:
-  pkg.installed
+  pkg:
+    - installed
 
-
-xbmc-ppa:
   pkgrepo.managed:
     - ppa: team-xbmc/ppa
     - require_in:
