@@ -22,6 +22,7 @@ base:
     - misc.neptune
     - postfix.outbound
     - smartmontools
+    - udev
     - xbmc
   'wilde.djl.im':
     - debsecan
