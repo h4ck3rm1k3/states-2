@@ -4,30 +4,30 @@ logcheck:
 
 /etc/logcheck/logcheck.conf:
   file.managed:
-    - source: salt://logcheck/etc/logcheck.conf
+    - source: salt://logcheck/logcheck.conf
     - require:
         - pkg: logcheck
 
 /etc/logcheck/ignore.d.server/local-avahi-daemon:
   file.managed:
-    - source: salt://logcheck/etc/logcheck/ignore.server.d/local-avahi-daemon
+    - source: salt://logcheck/ignore.server.d/local-avahi-daemon
     - require:
         - pkg: logcheck
 
 /etc/logcheck/ignore.d.server/local-dhclient:
   file.managed:
-    - source: salt://logcheck/etc/logcheck/ignore.server.d/dhclient
+    - source: salt://logcheck/ignore.server.d/dhclient
     - require:
         - pkg: logcheck
 
 /etc/logcheck/ignore.d.server/local-iptables:
   file.managed:
-    - source: salt://logcheck/etc/logcheck/ignore.server.d/local-iptables
+    - source: salt://logcheck/ignore.server.d/local-iptables
     - require:
         - pkg: logcheck
 
 /etc/logcheck/cron.d/logcheck:
   file.managed:
-    - source: salt://logcheck/etc/cron.d/logcheck
+    - source: salt://logcheck/cron.d/logcheck
     - require:
         - pkg: logcheck
