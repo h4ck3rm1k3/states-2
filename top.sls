@@ -21,7 +21,6 @@ base:
   'neptune.djl.im':
     - misc.neptune
     - postfix.outbound
-    - smartmontools
     - udev
     - xbmc
   'wilde.djl.im':
