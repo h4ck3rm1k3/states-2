@@ -16,7 +16,7 @@ logcheck:
 
 /etc/logcheck/ignore.d.server/local-dhclient:
   file.managed:
-    - source: salt://logcheck/ignore.server.d/dhclient
+    - source: salt://logcheck/ignore.server.d/local-dhclient
     - require:
         - pkg: logcheck
 
