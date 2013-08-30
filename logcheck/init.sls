@@ -14,6 +14,12 @@ logcheck:
     - require:
         - pkg: logcheck
 
+/etc/logcheck/ignore.d.server/local-dhclient:
+  file.managed:
+    - source: salt://logcheck/etc/logcheck/ignore.server.d/dhclient
+    - require:
+        - pkg: logcheck
+
 /etc/logcheck/ignore.d.server/local-iptables:
   file.managed:
     - source: salt://logcheck/etc/logcheck/ignore.server.d/local-iptables
