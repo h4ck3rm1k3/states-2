@@ -3,7 +3,6 @@ base:
     - development
     - extra_packages
     - iptables
-    - logcheck
     - ntp
     - postfix.common
     - salt
@@ -13,6 +12,7 @@ base:
     - users
   'jupiter.djl.im':
     - debsecan
+    - logcheck
     - misc.jupiter
     - postfix.outbound
     - sabnzbd
@@ -25,5 +25,6 @@ base:
     - xbmc
   'wilde.djl.im':
     - debsecan
+    - logcheck
     - postfix.outbound
     - znc
