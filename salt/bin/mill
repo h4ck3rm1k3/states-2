@@ -1,0 +1,26 @@
+#!/bin/sh
+#/ Usage: slt <cmd> <options>
+: ${SALT_STATES_DIR:="/srv/salt/states"}
+
+case "$1" in
+    pull|update|up)
+        shift
+        git --work-tree=$SALT_STATES_DIR --git-dir=$SALT_STATES_DIR/.git pull $*
+        ;;
+    apply|call)
+        shift
+        salt-call state.highstate $*
+        ;;
+    test)
+        shift
+        salt-call state.highstate $* test=True
+        ;;
+    "")
+        grep "^#/" $0 | cut -c4- >&2
+        exit 2
+        ;;
+    *)
+        echo "Unknown command: '$1'" >&2
+        exit 1
+        ;;
+esac
