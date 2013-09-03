@@ -1,5 +1,6 @@
 openvpn:
-  pkg.installed
+  pkg:
+    - installed
 
   service:
     - running

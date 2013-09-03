@@ -1,5 +1,6 @@
 dnsmasq:
-  pkg.installed
+  pkg:
+    - installed
 
   service:
     - running
