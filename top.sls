@@ -25,6 +25,8 @@ base:
     - xbmc
   'wilde.djl.im':
     - debsecan
+    - dnsmasq
     - logcheck
+    - openvpn
     - postfix.outbound
     - znc
