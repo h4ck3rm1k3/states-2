@@ -1,0 +1,29 @@
+* filter
+
+{% if accept_tcp_ports %}
+# TCP connections
+{%- for port in accept_tcp_ports %}
+-A INPUT -p tcp --dport {{ port }} -j ACCEPT
+{%- endfor %}
+{%- endif %}
+
+{%- if accept_tcp_source %}
+{%- for port in accept_tcp_source %}
+-A INPUT -p udp --sport {{ port }} -j ACCEPT
+{%- endfor %}
+{%- endif %}
+
+{% if accept_udp_ports %}
+# UDP connections
+{%- for port in accept_udp_ports %}
+-A INPUT -p udp --dport {{ port }} -j ACCEPT
+{%- endfor %}
+{%- endif %}
+
+{%- if accept_udp_source %}
+{%- for port in accept_udp_source %}
+-A INPUT -p udp --sport {{ port }} -j ACCEPT
+{%- endfor %}
+{%- endif %}
+
+COMMIT
