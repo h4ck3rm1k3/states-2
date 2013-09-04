@@ -27,6 +27,12 @@ iptables:
     - require:
       - file: /etc/iptables.d
 
+/etc/logcheck/ignore.d.server/local-iptables:
+  file.managed:
+    - source: salt://iptables/logcheck/local-iptables
+    - require:
+        - pkg: logcheck
+
 /etc/network/if-pre-up.d/iptables:
   file.managed:
     - source: salt://iptables/etc/network/if-pre-up.d/iptables

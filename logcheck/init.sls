@@ -20,12 +20,6 @@ logcheck:
     - require:
         - pkg: logcheck
 
-/etc/logcheck/ignore.d.server/local-iptables:
-  file.managed:
-    - source: salt://logcheck/ignore.server.d/local-iptables
-    - require:
-        - pkg: logcheck
-
 /etc/logcheck/cron.d/logcheck:
   file.managed:
     - source: salt://logcheck/cron.d/logcheck
