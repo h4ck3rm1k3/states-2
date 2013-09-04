@@ -11,6 +11,7 @@ base:
     - timezones
     - users
   'jupiter.djl.im':
+    - avahi
     - debsecan
     - logcheck
     - misc.jupiter
@@ -19,6 +20,7 @@ base:
     - sickbeard
     - smartmontools
   'neptune.djl.im':
+    - avahi
     - misc.neptune
     - postfix.outbound
     - udev

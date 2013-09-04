@@ -1,0 +1,6 @@
+*filter
+
+# avahi-daemon
+-A INPUT -p udp --dport 5353 -j ACCEPT
+
+COMMIT
