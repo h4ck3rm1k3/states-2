@@ -1,0 +1,2 @@
+# ignores openvpn lines
+^(.*)?openvpn-server(.*)$

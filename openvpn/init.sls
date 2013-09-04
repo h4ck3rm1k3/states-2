@@ -21,6 +21,12 @@ openvpn:
     - require:
         - pkg: openvpn
 
+/etc/logcheck.d/ignore.d.server/local-openvpn-server:
+  file.managed:
+    - source: salt://openvpn/logcheck/local-openvpn-server
+    - require:
+        - pkg: logcheck
+
 net.ipv4.ip_forward:
   sysctl.present:
     - value: 1
