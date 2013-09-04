@@ -19,7 +19,7 @@ openvpn:
   file.managed:
     - source: salt://openvpn/iptables/50-openvpn.txt
     - require:
-        - pkg: openvpn
+      - file: /etc/iptables.d
 
 /etc/logcheck.d/ignore.d.server/local-openvpn-server:
   file.managed:
