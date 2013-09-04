@@ -1,13 +1,2 @@
 #!/bin/bash
-IPTABLES_DATADIR=/etc/iptables.d
-
-flush=1
-for fn in $(ls $IPTABLES_DATADIR); do
-    if [ $flush = "1" ]; then
-        /sbin/iptables-restore $IPTABLES_DATADIR/$fn
-        flush=0
-    else
-        /sbin/iptables-restore --noflush $IPTABLES_DATADIR/$fn
-    fi
-done
-
+/usr/local/bin/iptables-redo

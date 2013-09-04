@@ -40,8 +40,13 @@ iptables:
     - require:
         - pkg: iptables
 
+/usr/local/bin/iptables-redo:
+  file.managed:
+    - source: salt://iptables/bin/iptables-redo
+    - mode: 700
+
 Restore iptables rules:
   cmd.wait:
-    - name: /etc/network/if-pre-up.d/iptables
+    - name: /usr/local/bin/iptables-redo
     - watch:
       - file: /etc/iptables.d/*
