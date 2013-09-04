@@ -10,7 +10,7 @@ python-yenc:
   pkg:
     - installed
 
-/usr/local/bin/sabnzbd:
+/usr/bin/sabnzbd:
   file.managed:
     - source: salt://sabnzbd/bin/sabnzbd
     - mode: 755
