@@ -1,0 +1,6 @@
+*filter
+
+# SABnzbd
+-A INPUT -p tcp --dport {{ sabnzbd_port }} -j ACCEPT
+
+COMMIT

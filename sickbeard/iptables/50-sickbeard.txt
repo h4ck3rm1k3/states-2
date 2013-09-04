@@ -1,0 +1,6 @@
+*filter
+
+# Sickbeard
+-A INPUT -p tcp --dport {{ sickbeard_port }} -j ACCEPT
+
+COMMIT
