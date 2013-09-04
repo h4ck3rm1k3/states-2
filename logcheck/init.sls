@@ -8,12 +8,6 @@ logcheck:
     - require:
         - pkg: logcheck
 
-/etc/logcheck/ignore.d.server/local-avahi-daemon:
-  file.managed:
-    - source: salt://logcheck/ignore.server.d/local-avahi-daemon
-    - require:
-        - pkg: logcheck
-
 /etc/logcheck/ignore.d.server/local-dhclient:
   file.managed:
     - source: salt://logcheck/ignore.server.d/local-dhclient

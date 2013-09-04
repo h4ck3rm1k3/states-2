@@ -6,3 +6,9 @@ avahi-daemon:
     - source: salt://avahi/iptables/50-avahi-daemon.txt
     - require:
       - file: /etc/iptables.d
+
+/etc/logcheck/ignore.d.server/local-avahi-daemon:
+  file.managed:
+    - source: salt://logcheck/ignore.server.d/local-avahi-daemon
+    - require:
+        - pkg: logcheck
