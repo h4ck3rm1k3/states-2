@@ -30,6 +30,8 @@ iptables:
 /etc/logcheck/ignore.d.server/local-iptables:
   file.managed:
     - source: salt://iptables/logcheck/local-iptables
+    - user: logcheck
+    - group: logcheck
 
 /etc/network/if-pre-up.d/iptables:
   file.symlink:

@@ -10,5 +10,7 @@ avahi-daemon:
 /etc/logcheck/ignore.d.server/local-avahi-daemon:
   file.managed:
     - source: salt://logcheck/ignore.server.d/local-avahi-daemon
+    - user: logcheck
+    - group: logcheck
     - require:
         - pkg: logcheck

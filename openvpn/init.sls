@@ -24,6 +24,8 @@ openvpn:
 /etc/logcheck/ignore.d.server/local-openvpn-server:
   file.managed:
     - source: salt://openvpn/logcheck/local-openvpn-server
+    - user: logcheck
+    - group: logcheck
     - require:
         - pkg: logcheck
 
