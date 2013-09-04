@@ -34,19 +34,22 @@ iptables:
         - pkg: logcheck
 
 /etc/network/if-pre-up.d/iptables:
+  file.symlink:
+    - target: /usr/bin/iptables-redo
+    - force: True
+    - mode: 700
+    - require:
+        - file: /usr/bin/iptables-redo
+
+/usr/bin/iptables-redo:
   file.managed:
-    - source: salt://iptables/etc/network/if-pre-up.d/iptables
+    - source: salt://iptables/bin/iptables-redo
     - mode: 700
     - require:
         - pkg: iptables
 
-/usr/local/bin/iptables-redo:
-  file.managed:
-    - source: salt://iptables/bin/iptables-redo
-    - mode: 700
-
 Restore iptables rules:
   cmd.wait:
-    - name: /usr/local/bin/iptables-redo
+    - name: /usr/bin/iptables-redo
     - watch:
       - file: /etc/iptables.d/*
