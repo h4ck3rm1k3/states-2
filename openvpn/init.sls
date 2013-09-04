@@ -21,7 +21,7 @@ openvpn:
     - require:
       - file: /etc/iptables.d
 
-/etc/logcheck.d/ignore.d.server/local-openvpn-server:
+/etc/logcheck/ignore.d.server/local-openvpn-server:
   file.managed:
     - source: salt://openvpn/logcheck/local-openvpn-server
     - require:
