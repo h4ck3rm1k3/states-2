@@ -1,14 +1,9 @@
-python-cheetah:
-  pkg:
-    - installed
-
-python-openssl:
-  pkg:
-    - installed
-
-python-yenc:
-  pkg:
-    - installed
+sabnzb_dependencies:
+  pkg.installed:
+    - names:
+      - python-cheetah
+      - python-openssl
+      - python-yenc
 
 /usr/bin/sabnzbd:
   file.managed:
