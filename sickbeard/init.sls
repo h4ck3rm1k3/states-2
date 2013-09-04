@@ -10,4 +10,4 @@
     - context:
       sickbeard_port: {{ pillar.get('sickbeard_port', '8888') }}
     - require:
-        file: /etc/iptables.d
+        - file: /etc/iptables.d

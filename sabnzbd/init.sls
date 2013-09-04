@@ -22,4 +22,4 @@ python-yenc:
     - context:
       sabnzbd_port: {{ pillar.get('sabnzbd_port', '7777') }}
     - require:
-        file: /etc/iptables.d
+        - file: /etc/iptables.d
