@@ -1,0 +1,6 @@
+*filter
+
+# Needed for SMB support
+-A INPUT -p udp --dport 137 -j ACCEPT
+
+COMMIT
