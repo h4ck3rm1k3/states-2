@@ -13,6 +13,7 @@ base:
   'jupiter.djl.im':
     - avahi
     - debsecan
+    - fstab
     - logcheck
     - misc.jupiter
     - postfix.outbound
@@ -21,6 +22,7 @@ base:
     - smartmontools
   'neptune.djl.im':
     - avahi
+    - fstab
     - misc.neptune
     - postfix.outbound
     - udev
