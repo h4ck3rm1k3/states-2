@@ -20,9 +20,3 @@ xbmc:
     - group: xbmc
     - require:
       - pkg: xbmc
-
-/etc/iptables.d/50-xbmc.txt:
-  file.managed:
-    - source: salt://xbmc/iptables/50-xbmc.txt
-    - require:
-      - file: /etc/iptables.d
