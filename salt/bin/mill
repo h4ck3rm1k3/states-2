@@ -1,5 +1,5 @@
 #!/bin/sh
-#/ Usage: slt <cmd> <options>
+#/ Usage: mill <cmd> <options>
 : ${SALT_STATES_DIR:="/srv/salt/states"}
 
 case "$1" in
@@ -10,6 +10,10 @@ case "$1" in
     apply|call)
         shift
         salt-call state.highstate $*
+        ;;
+    revert)
+        shift
+        git --work-tree=$SALT_STATES_DIR --git-dir=$SALT_STATES_DIR/.git revert $*
         ;;
     test)
         shift
