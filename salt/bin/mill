@@ -9,7 +9,7 @@ case "$1" in
         ;;
     apply|call)
         shift
-        salt-call state.highstate $*
+        salt-call state.highstate -l quiet $*
         ;;
     revert)
         shift
@@ -17,7 +17,7 @@ case "$1" in
         ;;
     test)
         shift
-        salt-call state.highstate $* test=True
+        salt-call state.highstate -l quiet test=True $*
         ;;
     "")
         grep "^#/" $0 | cut -c4- >&2
