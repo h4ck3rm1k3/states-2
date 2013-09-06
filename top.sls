@@ -3,6 +3,7 @@ base:
     - development
     - extra_packages
     - iptables
+    - logcheck
     - ntp
     - postfix.common
     - salt
@@ -14,7 +15,6 @@ base:
     - avahi
     - debsecan
     - fstab
-    - logcheck
     - misc.jupiter
     - postfix.outbound
     - sabnzbd
@@ -30,7 +30,6 @@ base:
   'wilde.djl.im':
     - debsecan
     - dnsmasq
-    - logcheck
     - openvpn
     - postfix.outbound
     - znc
