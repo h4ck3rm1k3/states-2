@@ -1,5 +1,10 @@
 avahi-daemon:
-  pkg.installed
+  pkg:
+    - installed
+
+  service:
+    - running
+    - enable: True
 
 /etc/iptables.d/50-avahi-daemon.txt:
   file.managed:
