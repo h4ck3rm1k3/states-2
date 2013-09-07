@@ -1,6 +1,6 @@
 base:
   '*':
-    - development
+    - basepkgs
     - extra_packages
     - iptables
     - logcheck

@@ -1,4 +1,4 @@
-devpkgs:
+basepkgs:
   pkg.installed:
     - pkgs:
         - git
