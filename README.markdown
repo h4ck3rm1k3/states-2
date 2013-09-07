@@ -1,1 +1,2 @@
-Personal [Salt](http://saltstack.org/) states. Debian scented.
+Personal [Salt](http://saltstack.org/) states. Developed for
+Debian/Ubuntu/Arch Linux.
