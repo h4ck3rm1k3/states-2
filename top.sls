@@ -4,6 +4,7 @@ base:
     - extra_packages
     - iptables
     - logcheck
+    - motd
     - ntp
     - postfix.common
     - salt
