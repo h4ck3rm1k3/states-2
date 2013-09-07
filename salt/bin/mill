@@ -15,7 +15,7 @@ case "$1" in
         shift
         git --work-tree=$SALT_STATES_DIR --git-dir=$SALT_STATES_DIR/.git revert $*
         ;;
-    test)
+    test|status|st)
         shift
         salt-call state.highstate -l quiet test=True $*
         ;;
