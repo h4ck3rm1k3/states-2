@@ -1,0 +1,5 @@
+*filter
+
+-A INPUT -p tcp --dport 6667 -j ACCEPT
+
+COMMIT
