@@ -3,8 +3,8 @@ state_verbose: False
 
 file_roots:
   base:
-    - /srv/salt/states
+    - /etc/salt/states
 
 pillar_roots:
   base:
-    - /srv/salt/pillars
+    - /etc/salt/pillars

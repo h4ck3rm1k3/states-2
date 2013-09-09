@@ -1,6 +1,6 @@
 #!/bin/sh
 #/ Usage: mill <cmd> <options>
-: ${SALT_STATES_DIR:="/srv/salt/states"}
+: ${SALT_STATES_DIR:="/etc/salt/states"}
 
 case "$1" in
     pull|update|up)
