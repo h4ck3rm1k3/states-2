@@ -6,7 +6,7 @@ base:
     - logcheck
     - motd
     - ntp
-    - postfix.common
+    - postfix
     - salt
     - ssh
     - sudo
@@ -17,7 +17,6 @@ base:
     - debsecan
     - fstab
     - misc.helium
-    - postfix.outbound
     - sabnzbd
     - sickbeard
     - smartmontools
@@ -25,12 +24,10 @@ base:
     - debsecan
     - dnsmasq
     - openvpn
-    - postfix.outbound
     - znc
   'neon.djl.im':
     - avahi
     - fstab
-    - misc.neptune
-    - postfix.outbound
+    - misc.neon
     - udev
     - xbmc
