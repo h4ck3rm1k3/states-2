@@ -20,3 +20,8 @@ xbmc:
     - group: xbmc
     - require:
       - pkg: xbmc
+
+/etc/init/ir-keytable.conf:
+  file.managed:
+    - source: salt://xbmc/ir-keytable.conf
+    - mode: 755
