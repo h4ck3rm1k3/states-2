@@ -12,11 +12,11 @@ base:
     - sudo
     - timezones
     - users
-  'jupiter.djl.im':
+  'helium.djl.im':
     - avahi
     - debsecan
     - fstab
-    - misc.jupiter
+    - misc.helium
     - postfix.outbound
     - sabnzbd
     - sickbeard
