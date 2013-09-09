@@ -21,6 +21,12 @@ base:
     - sabnzbd
     - sickbeard
     - smartmontools
+  'iron.djl.im':
+    - debsecan
+    - dnsmasq
+    - openvpn
+    - postfix.outbound
+    - znc
   'neptune.djl.im':
     - avahi
     - fstab
@@ -28,9 +34,3 @@ base:
     - postfix.outbound
     - udev
     - xbmc
-  'wilde.djl.im':
-    - debsecan
-    - dnsmasq
-    - openvpn
-    - postfix.outbound
-    - znc
