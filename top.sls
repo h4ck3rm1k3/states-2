@@ -27,7 +27,7 @@ base:
     - openvpn
     - postfix.outbound
     - znc
-  'neptune.djl.im':
+  'neon.djl.im':
     - avahi
     - fstab
     - misc.neptune
