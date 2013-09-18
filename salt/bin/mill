@@ -1,7 +1,27 @@
-#!/bin/sh
-#/ Usage: mill <cmd> <options>
+#!/bin/bash
+#/ Usage: mill [-v] <cmd> <options>
 : ${SALT_STATES_DIR:="/etc/salt/states"}
 
+usage() {
+    grep "^#/" $0 | cut -c4- >&2
+    exit 2
+}
+
+# salt-call arguments
+ARGS="-l quiet"
+while getopts :v o; do
+    case "$o" in
+        v)
+            ARGS="-l info"
+            shift
+            ;;
+        ?)
+            usage
+            ;;
+    esac
+done
+
+# commands
 case "$1" in
     pull|update|up)
         shift
@@ -9,7 +29,7 @@ case "$1" in
         ;;
     apply|call)
         shift
-        salt-call state.highstate -l quiet $*
+        salt-call state.highstate $ARGS $*
         ;;
     revert)
         shift
@@ -17,14 +37,13 @@ case "$1" in
         ;;
     test|status|st)
         shift
-        salt-call state.highstate -l quiet test=True $*
+        salt-call state.highstate $ARGS test=True $*
         ;;
     "")
-        grep "^#/" $0 | cut -c4- >&2
-        exit 2
+        usage
         ;;
     *)
-        echo "Unknown command: '$1'" >&2
+        echo "mill: Unknown command: '$1'" >&2
         exit 1
         ;;
 esac
