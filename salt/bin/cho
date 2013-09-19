@@ -1,6 +1,9 @@
 #!/bin/bash
-#/ Usage: mill [-v] <cmd> <options>
+#/ Usage: cho [-v] <cmd> <options>
+PROGNAME=$(basename "$0")
+
 : ${SALT_STATES_DIR:="/etc/salt/states"}
+
 
 usage() {
     grep "^#/" $0 | cut -c4- >&2
@@ -43,7 +46,7 @@ case "$1" in
         usage
         ;;
     *)
-        echo "mill: Unknown command: '$1'" >&2
+        echo "$PROGNAME: Unknown command: '$1'" >&2
         exit 1
         ;;
 esac

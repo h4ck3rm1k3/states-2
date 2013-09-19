@@ -1,6 +1,6 @@
-/usr/bin/mill:
+/usr/bin/cho:
   file.managed:
-    - source: salt://salt/bin/mill
+    - source: salt://salt/bin/cho
     - mode: 700
     - user: root
     - group: root
