@@ -1,2 +1,0 @@
-# ignore invalid response packet crap from avahi-daemon
-^\w{3} [ :0-9]{11} [._[:alnum:]-]+ avahi-daemon\[[0-9]+\]: Invalid response packet

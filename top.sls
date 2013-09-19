@@ -13,7 +13,6 @@ base:
     - timezones
     - users
   'helium.djl.im':
-    - avahi
     - debsecan
     - fstab
     - misc.helium
@@ -26,7 +25,6 @@ base:
     - openvpn
     - znc
   'neon.djl.im':
-    - avahi
     - fstab
     - misc.neon
     - udev
