@@ -13,6 +13,7 @@ base:
     - timezones
     - users
   'helium.djl.im':
+    - apt
     - debsecan
     - fstab
     - misc.helium
@@ -20,11 +21,13 @@ base:
     - sickbeard
     - smartmontools
   'iron.djl.im':
+    - apt
     - debsecan
     - dnsmasq
     - openvpn
     - znc
   'neon.djl.im':
+    - apt
     - fstab
     - misc.neon
     - udev
