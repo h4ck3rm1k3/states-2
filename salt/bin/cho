@@ -36,7 +36,7 @@ case "$1" in
         ;;
     revert)
         shift
-        git --work-tree=$SALT_STATES_DIR --git-dir=$SALT_STATES_DIR/.git revert $*
+        git --work-tree=$SALT_STATES_DIR --git-dir=$SALT_STATES_DIR/.git checkout -- .
         ;;
     test|status|st)
         shift
