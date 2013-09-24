@@ -16,7 +16,6 @@ base:
     - apt
     - debsecan
     - fstab
-    - misc.helium
     - sabnzbd
     - sickbeard
     - smartmontools
@@ -29,6 +28,5 @@ base:
   'neon.djl.im':
     - apt
     - fstab
-    - misc.neon
     - udev
     - xbmc
