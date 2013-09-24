@@ -1,7 +1,17 @@
-/usr/bin/sickbeard:
+sickbeard_dependencies:
+  pkg.installed:
+    - names:
+      - python-cheetah
+
+/etc/init.d/sickbeard:
   file.managed:
-    - source: salt://sickbeard/bin/sickbeard
+    - source: salt://sickbeard/sickbeard.init
     - mode: 755
+
+/etc/default/sickbeard:
+  file.managed:
+    - source: salt://sickbeard/sickbeard.conf.jinja
+    - template: jinja
 
 /etc/iptables.d/50-sickbeard.txt:
   file.managed:

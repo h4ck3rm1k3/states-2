@@ -1,0 +1,69 @@
+#!/bin/sh
+#
+### BEGIN INIT INFO
+# Provides:          sickbeard
+# Required-Start:    $local_fs $network $remote_fs
+# Required-Stop:     $local_fs $network $remote_fs
+# Should-Start:      $NetworkManager
+# Should-Stop:       $NetworkManager
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: starts instance of Sick Beard
+# Description:       starts instance of Sick Beard using start-stop-daemon
+### END INIT INFO
+
+# source configs
+test -f /etc/default/sickbeard && . /etc/default/sickbeard
+
+NAME=sickbeard
+DESC=SickBeard
+
+RUN_AS=${SICKBEARD_USER-$NAME}
+APP_PATH=${SICKBEARD_HOME-/opt/$NAME}
+DATA_DIR=${SICKBEARD_DATA-/opt/$NAME}
+PID_FILE=${SICKBEARD_PIDFILE-/var/run/$NAME/$NAME.pid}
+
+DAEMON=${PYTHON_BIN-/usr/bin/python}
+
+PID_PATH=`dirname $PID_FILE`
+DAEMON_OPTS=" SickBeard.py -q --daemon --nolaunch --pidfile=${PID_FILE} --datadir=${DATA_DIR} "
+
+test -x $DAEMON || exit 0
+
+set -e
+
+. /lib/lsb/init-functions
+
+if [ -e $PID_FILE ]; then
+    PID=`cat $PID_FILE`
+    if ! kill -0 $PID > /dev/null 2>&1; then
+        echo "Removing stale $PID_FILE"
+        rm $PID_FILE
+    fi
+fi
+
+case "$1" in
+    start)
+        echo "Starting $DESC"
+        start-stop-daemon -d $APP_PATH -c $RUN_AS --start --pidfile $PID_FILE --exec $DAEMON -- $DAEMON_OPTS
+        ;;
+    stop)
+        echo "Stopping $DESC"
+        start-stop-daemon --stop --pidfile $PID_FILE --retry 15
+        ;;
+    restart|force-reload)
+        echo "Restarting $DESC"
+        start-stop-daemon --stop --pidfile $PID_FILE --retry 15
+        start-stop-daemon -d $APP_PATH -c $RUN_AS --start --pidfile $PID_FILE --exec $DAEMON -- $DAEMON_OPTS
+        ;;
+    status)
+       status_of_proc -p $PID_FILE "$DAEMON" "$DESC"
+        ;;
+    *)
+        N=/etc/init.d/$NAME
+        echo "Usage: $N {start|stop|restart|force-reload}" >&2
+        exit 1
+        ;;
+esac
+
+exit 0

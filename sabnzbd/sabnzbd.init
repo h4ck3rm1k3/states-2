@@ -1,0 +1,75 @@
+#!/bin/sh
+#
+### BEGIN INIT INFO
+# Provides:          sabnzbd
+# Required-Start:    $local_fs $network $remote_fs
+# Required-Stop:     $local_fs $network $remote_fs
+# Should-Start:      $NetworkManager
+# Should-Stop:       $NetworkManager
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: starts instance of SABnzbd
+# Description:       starts instance of SABnzbd using start-stop-daemon
+### END INIT INFO
+
+# source configs
+test -f /etc/default/sabnzbd && . /etc/default/sabnzbd
+
+NAME=sabnzbd
+DESC=SABnzbd
+
+DAEMON=${PYTHON_BIN-/usr/bin/python}
+
+APP_PATH=${SABNZBD_HOME-/opt/$NAME}
+ADDRESS=${SABNZBD_ADDRESS-0.0.0.0}
+INI_FILE=${SABNZBD_INIFILE-$APP_PATH/sabnzbd.ini}
+PID_FILE=${SABNZBD_PIDFILE-/var/run/$NAME/$NAME-$PORT.pid}
+PORT=${SABNZBD_PORT-7777}
+RUN_AS=${SABNZBD_USER-$NAME}
+
+PID_PATH=`dirname $PID_FILE`
+DAEMON_OPTS=" SABnzbd.py -d -f $INI_FILE --pid=${PID_PATH}"
+
+test -x $DAEMON || exit 0
+
+set -e
+
+. /lib/lsb/init-functions
+
+# Create PID directory and ensure the user can write to it
+mkdir -p $PID_PATH
+chown $RUN_AS $PID_PATH
+
+if [ -e $PID_FILE ]; then
+    PID=`cat $PID_FILE`
+    if ! kill -0 $PID > /dev/null 2>&1; then
+        echo "Removing stale $PID_FILE"
+        rm $PID_FILE
+    fi
+fi
+
+case "$1" in
+    start)
+        echo "Starting $DESC"
+        start-stop-daemon -d $APP_PATH -c $RUN_AS --start --pidfile $PID_FILE --exec $DAEMON -- $DAEMON_OPTS
+        ;;
+    stop)
+        echo "Stopping $DESC"
+        start-stop-daemon --stop --pidfile $PID_FILE --retry 15
+        ;;
+    restart|force-reload)
+        echo "Restarting $DESC"
+        start-stop-daemon --stop --pidfile $PID_FILE --retry 15
+        start-stop-daemon -d $APP_PATH -c $RUN_AS --start --pidfile $PID_FILE --exec $DAEMON -- $DAEMON_OPTS
+        ;;
+    status)
+       status_of_proc -p $PID_FILE "$DAEMON" "$DESC"
+        ;;
+    *)
+        N=/etc/init.d/$NAME
+        echo "Usage: $N {start|stop|restart|force-reload}" >&2
+        exit 1
+        ;;
+esac
+
+exit 0

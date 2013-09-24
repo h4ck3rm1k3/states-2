@@ -5,9 +5,14 @@ sabnzb_dependencies:
       - python-openssl
       - python-yenc
 
-/usr/bin/sabnzbd:
+/etc/default/sabnzbd:
   file.managed:
-    - source: salt://sabnzbd/bin/sabnzbd
+    - source: salt://sabnzbd/sabnzbd.conf.jinja
+    - template: jinja
+
+/etc/init.d/sabnzbd:
+  file.managed:
+    - source: salt://sabnzbd/sabnzbd.init
     - mode: 755
 
 /etc/iptables.d/50-sabnzbd.txt:
