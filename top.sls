@@ -1,11 +1,10 @@
 base:
   '*':
-    - basepkgs
-    - extra_packages
     - iptables
     - logcheck
     - motd
     - ntp
+    - packages
     - postfix
     - salt
     - ssh

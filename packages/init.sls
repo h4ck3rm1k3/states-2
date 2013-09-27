@@ -1,3 +1,9 @@
+basepkgs:
+  pkg.installed:
+    - pkgs:
+        - git
+        - vim
+
 {%- if pillar.get('extra_packages', []) %}
 extra_packages:
   pkg.installed:
