@@ -27,5 +27,4 @@ base:
   'neon.djl.im':
     - apt
     - fstab
-    - udev
     - xbmc

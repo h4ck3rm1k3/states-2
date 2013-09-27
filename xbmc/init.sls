@@ -25,3 +25,10 @@ xbmc:
   file.managed:
     - source: salt://xbmc/ir-keytable.conf
     - mode: 755
+
+/etc/udev/rules.d/90-remote-wake.rules:
+  file.managed:
+    - source: salt://xbmc/90-remote-wake.rules
+    - user: root
+    - group: root
+    - mode: 644
