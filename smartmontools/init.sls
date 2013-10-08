@@ -6,7 +6,7 @@ smartmontools:
 
 /etc/defaults/smartmontools:
   file.managed:
-    - source: salt://smartmontools/etc/defaults/smartmontools
+    - source: salt://smartmontools/smartmontools.conf
     - user: root
     - group: root
     - mode: 644
