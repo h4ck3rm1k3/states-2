@@ -2,7 +2,7 @@
 #/ Usage: cho [-v] <cmd> <options>
 PROGNAME=$(basename "$0")
 
-: ${SALT_STATES_DIR:="/etc/salt/states"}
+SALT_STATES_DIR="${SALT_STATES_DIR:-/etc/salt/states}"
 
 
 usage() {
