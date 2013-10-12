@@ -1,5 +1,5 @@
 #!/bin/bash
-#/ Usage: cho [-v] <cmd> <options>
+#/ Usage: ppr [-v] <cmd> <options>
 PROGNAME=$(basename "$0")
 
 SALT_STATES_DIR="${SALT_STATES_DIR:-/etc/salt/states}"
@@ -38,7 +38,7 @@ case "$1" in
         shift
         git --work-tree=$SALT_STATES_DIR --git-dir=$SALT_STATES_DIR/.git checkout -- .
         ;;
-    noop|status)
+    noop|status|st)
         shift
         salt-call state.highstate $ARGS test=True $*
         ;;

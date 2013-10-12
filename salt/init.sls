@@ -1,6 +1,6 @@
-/usr/bin/cho:
+/usr/bin/ppr:
   file.managed:
-    - source: salt://salt/bin/cho
+    - source: salt://salt/bin/ppr
     - mode: 700
     - user: root
     - group: root
