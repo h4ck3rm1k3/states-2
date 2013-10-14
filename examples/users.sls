@@ -7,5 +7,4 @@ users:
       - firstgroup
       - secondgroup
     ssh_auth:
-      key: big_long_key_here
-      comment: some_comment
+      - source: salt://path/authorized_keys

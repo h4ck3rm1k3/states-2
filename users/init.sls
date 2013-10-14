@@ -25,17 +25,30 @@
     - target: {{ args['alias'] }}
   {% endif %}
 
+# ssh keys
+{% if 'ssh_auth' in args %}
+/home/{{ user }}/.ssh:
+  file.directory:
+    - user: {{ user }}
+    - group: {{ user }}
+    - mode: 700
+    - require:
+      - user: {{ user }}
+
+/home/{{ user }}/.ssh/authorized_keys:
+  file.managed:
+    - user: {{ user }}
+    - group: {{ user }}
+    - mode: 600
+    - source: salt://keys/{{ user }}
+    - require:
+      - file: /home/{{ user }}/.ssh
+{% endif %}
+
 # user's groups
 {% for group in args['groups'] %}
 {{ group }}:
   group:
     - present
 {% endfor %}
-
-# ssh key
-{{ args['ssh_auth']['key'] }}:
-  ssh_auth.present:
-    - user: {{ user }}
-    - enc: {{ args['ssh_auth'].get('enc', 'ssh-rsa') }}
-    - comment: {{ args['ssh_auth']['comment'] }}
 {% endfor %}
