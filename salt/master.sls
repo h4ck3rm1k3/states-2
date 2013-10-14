@@ -18,7 +18,7 @@ salt-master:
 
 /etc/iptables.d/50-salt-master.txt:
   file.managed:
-    - source: salt://znc/iptables/50-salt-master.txt
+    - source: salt://salt/iptables/50-salt-master.txt
     - template: jinja
     - require:
         - file: /etc/iptables.d
