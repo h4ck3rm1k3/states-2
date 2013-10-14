@@ -1,5 +1,6 @@
 salt-master:
-  pkg.installed
+  pkg:
+    - installed
 
   service.running:
     - enable: True
@@ -16,7 +17,8 @@ salt-master:
         - pkg: salt-master
 
 /etc/iptables.d/50-salt-master.txt:
-  - source: salt://znc/iptables/50-salt-master.txt
-  - template: jinja
-  - require:
-      - file: /etc/iptables.d
+  file.managed:
+    - source: salt://znc/iptables/50-salt-master.txt
+    - template: jinja
+    - require:
+        - file: /etc/iptables.d
