@@ -36,5 +36,6 @@
 {{ args['ssh_auth']['key'] }}:
   ssh_auth.present:
     - user: {{ user }}
+    - enc: {{ args['ssh_auth'].get('enc', 'ssh-rsa') }}
     - comment: {{ args['ssh_auth']['comment'] }}
 {% endfor %}
