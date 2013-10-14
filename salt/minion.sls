@@ -3,7 +3,7 @@ salt-minion:
     - installed
 
   service.running:
-    - enabled: True
+    - enable: True
     - watch:
         - file: /etc/salt/minion
 

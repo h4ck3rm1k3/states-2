@@ -1,6 +1,11 @@
 salt-master:
   pkg.installed
 
+  service.running:
+    - enable: True
+    - watch:
+      - file: /etc/salt/master
+
 /etc/salt/master:
   file.managed:
     - source: salt://salt/master.conf
