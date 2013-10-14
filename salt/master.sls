@@ -14,4 +14,4 @@ salt-master:
   - source: salt://znc/iptables/50-salt-master.txt
   - template: jinja
   - require:
-  - file: /etc/iptables.d
+      - file: /etc/iptables.d

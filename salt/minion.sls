@@ -9,7 +9,7 @@ salt-minion:
 
 /etc/salt/minion:
   file.managed:
-    - source: salt://salt/minion
+    - source: salt://salt/minion.conf
     - mode: 640
     - user: root
     - group: root
