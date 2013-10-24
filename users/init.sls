@@ -40,7 +40,7 @@
     - user: {{ user }}
     - group: {{ user }}
     - mode: 600
-    - source: salt://keys/{{ user }}
+    - source: salt://keys/{{ user }}.pub
     - require:
       - file: /home/{{ user }}/.ssh
 {% endif %}
