@@ -4,23 +4,21 @@
   user.present:
     - home: /home/{{ user }}
     - shell: {{ args.get('shell', '/bin/bash') }}
-    {% if not args.get('keep_password', True) %}
     - password: "!"
-    {% endif %}
     - groups:
       - {{ user }}
-    {% for group in args['groups'] %}
+    {% for group in args.get('groups', []) %}
       - {{ group }}
     {% endfor %}
     - require:
-    {% for group in args['groups'] %}
+    {% for group in args.get('groups', []) %}
       - group: {{ group }}
     {% endfor %}
 
   group:
     - present
 
-  {% if 'alias' in args.keys() %}
+  {% if 'alias' in args %}
   alias.present:
     - target: {{ args['alias'] }}
   {% endif %}
@@ -44,7 +42,7 @@
       - file: /home/{{ user }}/.ssh
 
 # user's groups
-{% for group in args['groups'] %}
+{% for group in args.get('groups', []) %}
 {{ group }}:
   group:
     - present
