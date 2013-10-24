@@ -26,7 +26,6 @@
   {% endif %}
 
 # ssh keys
-{% if 'ssh_auth' in args %}
 /home/{{ user }}/.ssh:
   file.directory:
     - user: {{ user }}
@@ -43,7 +42,6 @@
     - source: salt://keys/{{ user }}.pub
     - require:
       - file: /home/{{ user }}/.ssh
-{% endif %}
 
 # user's groups
 {% for group in args['groups'] %}
