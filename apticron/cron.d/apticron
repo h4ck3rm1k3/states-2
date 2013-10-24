@@ -1,0 +1,3 @@
+# cron entry for apticron
+
+58 * * * * root if test -x /usr/sbin/apticron; then /usr/sbin/apticron --cron; else true; fi

@@ -13,6 +13,7 @@ base:
     - users
   'helium.djl.im':
     - apt
+    - apticron
     - debsecan
     - fstab
     - sabnzbd
@@ -20,6 +21,7 @@ base:
     - smartmontools
   'iron.djl.im':
     - apt
+    - apticron
     - debsecan
     - dnsmasq
     - openvpn
