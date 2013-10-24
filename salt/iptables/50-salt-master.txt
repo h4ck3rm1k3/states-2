@@ -1,6 +1,0 @@
-*filter
-
--A INPUT -p tcp --dport 4505 -j ACCEPT
--A INPUT -p tcp --dport 4506 -j ACCEPT
-
-COMMIT
