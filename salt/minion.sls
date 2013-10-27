@@ -1,5 +1,6 @@
 salt-minion:
-  pkg.installed
+  pkg:
+    - installed
 
   service.running:
     - enable: True
