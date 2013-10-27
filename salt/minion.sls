@@ -1,6 +1,5 @@
 salt-minion:
-  pkg:
-    - installed
+  pkg.installed
 
   service.running:
     - enable: True
@@ -15,3 +14,12 @@ salt-minion:
     - group: root
     - require:
         - pkg: salt-minion
+
+/usr/bin/ppr:
+  file.managed:
+    - source: salt://salt/bin/ppr
+    - mode: 700
+    - user: root
+    - group: root
+    - require:
+      - pkg: salt-minion

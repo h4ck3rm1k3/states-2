@@ -6,7 +6,7 @@ base:
     - ntp
     - packages
     - postfix
-    - salt
+    - salt.minion
     - ssh
     - sudo
     - timezones
@@ -25,6 +25,7 @@ base:
     - debsecan
     - dnsmasq
     - openvpn
+    - salt.master
     - znc
   'neon.djl.im':
     - apt
