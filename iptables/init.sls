@@ -32,6 +32,8 @@ iptables:
     - source: salt://iptables/logcheck/local-iptables
     - user: logcheck
     - group: logcheck
+    - require:
+        - pkg: logcheck
 
 /etc/network/if-pre-up.d/iptables:
   file.symlink:
