@@ -3,11 +3,19 @@
 PROGNAME=$(basename "$0")
 
 SALT_STATES_DIR="${SALT_STATES_DIR:-/etc/salt/states}"
+SALT_PILLARS_DIR="${SALT_STATES_DIR:-/etc/salt/pillars}"
+
+test -d "$SALT_STATES_DIR" -a -d "$SALT_STATES_DIR" && MASTER=1 || MASTER=0
 
 
 usage() {
     grep "^#/" $0 | cut -c4- >&2
     exit 2
+}
+
+fail() {
+    echo "$PROGNAME: $1" >&2
+    exit 1
 }
 
 # salt-call arguments
@@ -28,7 +36,9 @@ done
 case "$1" in
     pull|update|up)
         shift
+        test $MASTER -eq 1 || fail "'up' can only be run on Salt master"
         git --work-tree=$SALT_STATES_DIR --git-dir=$SALT_STATES_DIR/.git pull $*
+        git --work-tree=$SALT_PILLARS_DIR --git-dir=$SALT_PILLARS_DIR/.git pull $*
         ;;
     apply|call)
         shift
@@ -36,7 +46,9 @@ case "$1" in
         ;;
     revert)
         shift
+        test $MASTER -eq 1 || fail "'revert' can only be run on Salt master"
         git --work-tree=$SALT_STATES_DIR --git-dir=$SALT_STATES_DIR/.git checkout -- .
+        git --work-tree=$SALT_PILLARS_DIR --git-dir=$SALT_PILLARS_DIR/.git checkout -- .
         ;;
     noop|status|st)
         shift
