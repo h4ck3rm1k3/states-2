@@ -37,21 +37,21 @@ iptables:
 
 /etc/network/if-pre-up.d/iptables:
   file.symlink:
-    - target: /usr/bin/iptables-redo
+    - target: /usr/bin/iprf
     - force: True
     - mode: 700
     - require:
-        - file: /usr/bin/iptables-redo
+        - file: /usr/bin/iprf
 
-/usr/bin/iptables-redo:
+/usr/bin/iprf:
   file.managed:
-    - source: salt://iptables/bin/iptables-redo
+    - source: salt://iptables/bin/iprf
     - mode: 700
     - require:
         - pkg: iptables
 
 Restore iptables rules:
   cmd.wait:
-    - name: /usr/bin/iptables-redo
+    - name: /usr/bin/iprf
     - watch:
       - file: /etc/iptables.d/*
