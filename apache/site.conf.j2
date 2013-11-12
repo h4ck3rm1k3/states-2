@@ -1,0 +1,38 @@
+<VirtualHost *:80>
+    ServerName {{ args.fqdn }}
+    {%- if 'aliases' in args %}
+    ServerAlias {{ args.aliases|join(" ") }}
+    {%- endif %}
+    DocumentRoot /var/www/{{ args.fqdn }}
+    Options -Indexes
+</VirtualHost>
+
+{% if args.get('ssl', False) %}
+<VirtualHost *:443>
+    ServerName {{ args.fqdn }}
+    {%- if 'aliases' in args %}
+    ServerAlias {{ args.aliases|join(" ") }}
+    {%- endif %}
+
+    SSLEngine on
+    SSLProtocol ALL -SSLv2
+    SSLHonorCipherOrder On
+    SSLCipherSuite ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AES:RSA+3DES:!ADH:!AECDH:!MD5:!DSS
+    SSLCertificateFile /etc/ssl/sites/{{ args.fqdn }}.crt
+    SSLCertificateKeyFile /etc/ssl/sites/{{ args.fqdn }}.key
+    SSLCACertificateFile /etc/ssl/sites/{{ args.fqdn }}.pem
+    Header add Strict-Transport-Security "max-age=15768000; includeSubdomains"
+
+    DocumentRoot /var/www/{{ args.fqdn }}
+    Options -Indexes
+
+    ErrorLog /var/log/apache2/{{ args.fqdn }}/error.log
+    CustomLog /var/log/apache2/{{ args.fqdn }}/access.log common
+
+    <Directory /var/www/{{ args.fqdn }}>
+        AllowOverride All
+        Order allow,deny
+        allow from all
+    </Directory>
+</VirtualHost>
+{% endif %}

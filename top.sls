@@ -20,11 +20,14 @@ base:
     - sickbeard
     - smartmontools
   'iron.djl.im':
+    - apache
     - apt
     - apticron
     - debsecan
     - dnsmasq
     - openvpn
+    - php
+    - owncloud
     - salt.master
     - znc
   'neon.djl.im':

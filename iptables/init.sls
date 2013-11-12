@@ -15,17 +15,14 @@ iptables:
     - require:
       - file: /etc/iptables.d
 
+{% if pillar.get('iptables_custom_rules', []) %}
 /etc/iptables.d/50-custom-rules.txt:
   file.managed:
     - source: salt://iptables/rules/50-custom-rules.txt
     - template: jinja
-    - context:
-      accept_tcp_ports: {{ pillar.get('accept_tcp_ports', []) }}
-      accept_udp_ports: {{ pillar.get('accept_udp_ports', []) }}
-      accept_tcp_source: {{ pillar.get('accept_tcp_source', []) }}
-      accept_udp_source: {{ pillar.get('accept_udp_source', []) }}
     - require:
       - file: /etc/iptables.d
+{% endif %}
 
 /etc/logcheck/ignore.d.server/local-iptables:
   file.managed:
