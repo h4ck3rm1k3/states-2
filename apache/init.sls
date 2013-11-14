@@ -40,6 +40,13 @@ apache2:
     - require:
       - pkg: apache2
 
+/etc/monit/conf.d/apache2:
+  file.managed:
+    - source: salt://apache/monit/apache2
+    - require:
+      - pkg: monit
+
+
 {% for site, args in pillar.get('apache_sites', {}).items() %}
 /var/log/apache2/{{ args.fqdn }}:
   file.directory:
