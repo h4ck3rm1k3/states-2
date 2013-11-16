@@ -12,3 +12,9 @@ ssh:
   file.managed:
     - source: salt://ssh/sshd_config
     - template: jinja
+
+/etc/monit/conf.d/ssh:
+  file.managed:
+    - source: salt://ssh/monit/ssh
+    - require:
+      - pkg: monit
