@@ -2,11 +2,13 @@ base:
   '*':
     - iptables
     - logcheck
+    - logrotate
     - monit
     - motd
     - ntp
     - packages
     - postfix
+    - salt.common
     - salt.minion
     - ssh
     - sudo
