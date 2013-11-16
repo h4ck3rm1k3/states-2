@@ -2,8 +2,8 @@ base:
   '*':
     - iptables
     - logcheck
-    - motd
     - monit
+    - motd
     - ntp
     - packages
     - postfix
