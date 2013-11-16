@@ -6,6 +6,8 @@ monit:
     - enable: True
     - watch:
       - file: /etc/monit/monitrc
+    - require:
+      - pkg: monit
 
 /etc/monit/monitrc:
   file.managed:
