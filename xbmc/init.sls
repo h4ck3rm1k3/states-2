@@ -3,7 +3,7 @@ xbmc:
     - installed
 
   pkgrepo.managed:
-    - ppa: team-xbmc/ppa
+    - ppa: nathan-renniewaldock/xbmc-stable
     - require_in:
       - pkg: xbmc
 
@@ -20,6 +20,10 @@ xbmc:
     - group: xbmc
     - require:
       - pkg: xbmc
+
+/etc/asound.conf:
+  file.managed:
+    - source: salt://xbmc/asound.conf
 
 /etc/init/ir-keytable.conf:
   file.managed:
