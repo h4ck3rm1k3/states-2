@@ -4,7 +4,7 @@ monit:
 
   service.running:
     - enable: True
-    - mode: 644
+    - mode: 700
     - require:
       - pkg: monit
     - watch:
