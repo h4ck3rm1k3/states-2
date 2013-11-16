@@ -4,10 +4,11 @@ monit:
 
   service.running:
     - enable: True
-    - watch:
-      - file: /etc/monit/monitrc
+    - mode: 644
     - require:
       - pkg: monit
+    - watch:
+      - file: /etc/monit/monitrc
 
 /etc/monit/monitrc:
   file.managed:
