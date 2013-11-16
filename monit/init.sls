@@ -4,7 +4,6 @@ monit:
 
   service.running:
     - enable: True
-    - mode: 700
     - require:
       - pkg: monit
     - watch:
@@ -12,6 +11,7 @@ monit:
 
 /etc/monit/monitrc:
   file.managed:
+    - mode: 700
     - source: salt://monit/monitrc
     - require:
       - pkg: monit
