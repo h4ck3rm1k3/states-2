@@ -12,6 +12,15 @@
 
     DocumentRoot /var/www/{{ args.fqdn }}
     Options -Indexes
+
+    ErrorLog /var/log/apache2/{{ args.fqdn }}/error.log
+    CustomLog /var/log/apache2/{{ args.fqdn }}/access.log common
+
+    <Directory /var/www/{{ args.fqdn }}>
+        AllowOverride All
+        Order allow,deny
+        allow from all
+    </Directory>
 </VirtualHost>
 
 {% if args.get('ssl', False) %}
