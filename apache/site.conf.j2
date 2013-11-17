@@ -21,7 +21,7 @@
     SSLCertificateFile /etc/ssl/sites/{{ args.fqdn }}.crt
     SSLCertificateKeyFile /etc/ssl/sites/{{ args.fqdn }}.key
     SSLCACertificateFile /etc/ssl/sites/{{ args.fqdn }}.pem
-    Header add Strict-Transport-Security "max-age=15768000; includeSubdomains"
+    Header add Strict-Transport-Security "max-age=15768000{% if args.get('sts_include_subdomains', False) %}; includeSubdomains{% endif %}"
 
     DocumentRoot /var/www/{{ args.fqdn }}
     Options -Indexes
