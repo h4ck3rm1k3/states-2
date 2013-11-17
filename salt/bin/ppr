@@ -5,7 +5,11 @@ PROGNAME=$(basename "$0")
 SALT_STATES_DIR="${SALT_STATES_DIR:-/etc/salt/states}"
 SALT_PILLARS_DIR="${SALT_STATES_DIR:-/etc/salt/pillars}"
 
-test -d "$SALT_STATES_DIR" -a -d "$SALT_STATES_DIR" && MASTER=1 || MASTER=0
+if [ -d "$SALT_STATES_DIR" -a -d "$SALT_PILLARS_DIR" ]; then
+    MASTER=1
+else
+    MASTER=0
+fi
 
 
 usage() {
