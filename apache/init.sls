@@ -8,13 +8,18 @@ apache2:
       - pkg: apache2
     - watch:
       - file: /etc/apache2/apache2.conf
-      - file: /etc/apache2/ports.conf
+      - file: /etc/apache2/conf.d/*
       - file: /etc/apache2/sites-enabled/*
 
 /etc/apache2/apache2.conf:
   file.managed:
     - source: salt://apache/apache2.conf.j2
     - template: jinja
+    - require:
+      - pkg: apache2
+
+/etc/apache2/conf.d:
+  file.directory:
     - require:
       - pkg: apache2
 
