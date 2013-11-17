@@ -4,7 +4,7 @@ sudo:
 
 /etc/sudoers.d/wheel:
   file.managed:
-    - source: salt://sudo/etc/sudoers.d/wheel
+    - source: salt://sudo/wheel
     - user: root
     - group: root
     - mode: 440
