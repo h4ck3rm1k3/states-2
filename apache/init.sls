@@ -18,9 +18,9 @@ apache2:
     - require:
       - pkg: apache2
 
-/etc/apache2/ports.conf:
+/etc/apache2/conf.d/ports.conf:
   file.managed:
-    - source: salt://apache/ports.conf
+    - source: salt://apache/conf.d/ports.conf
     - require:
       - pkg: apache2
 
