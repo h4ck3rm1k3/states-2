@@ -15,6 +15,7 @@ base:
     - timezones
     - users
   'helium.djl.im':
+    - apache
     - apt
     - apticron
     - debsecan
