@@ -23,11 +23,9 @@ salt-master:
     - require:
         - file: /etc/iptables.d
 
-/usr/bin/ppr:
+/usr/bin/ups:
   file.managed:
-    - source: salt://salt/bin/ppr
+    - source: salt://salt/bin/ups
     - mode: 700
     - user: root
     - group: root
-    - require:
-      - pkg: salt-minion

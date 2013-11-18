@@ -1,0 +1,12 @@
+#!/bin/sh
+#/ Usage: ups
+# Update Pillars and States
+BASE="${SALT_BASE:-/etc/salt}"
+REPOS="states pillars"
+
+for x in $REPOS; do
+    cd "$BASE/$x"
+    git fetch
+    /bin/echo -n "$(basename $x): "
+    git reset --hard origin/master
+done
