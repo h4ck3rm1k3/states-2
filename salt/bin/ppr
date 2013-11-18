@@ -3,23 +3,11 @@
 PROGNAME=$(basename "$0")
 
 SALT_STATES_DIR="${SALT_STATES_DIR:-/etc/salt/states}"
-SALT_PILLARS_DIR="${SALT_STATES_DIR:-/etc/salt/pillars}"
-
-if [ -d "$SALT_STATES_DIR" -a -d "$SALT_PILLARS_DIR" ]; then
-    MASTER=1
-else
-    MASTER=0
-fi
-
+SALT_PILLARS_DIR="${SALT_PILLARS_DIR:-/etc/salt/pillars}"
 
 usage() {
     grep "^#/" $0 | cut -c4- >&2
     exit 2
-}
-
-fail() {
-    echo "$PROGNAME: $1" >&2
-    exit 1
 }
 
 # salt-call arguments
@@ -40,19 +28,16 @@ done
 case "$1" in
     pull|update|up)
         shift
-        test $MASTER -eq 1 || fail "'up' can only be run on Salt master"
-        git --work-tree=$SALT_STATES_DIR --git-dir=$SALT_STATES_DIR/.git pull $*
-        git --work-tree=$SALT_PILLARS_DIR --git-dir=$SALT_PILLARS_DIR/.git pull $*
+        for x in "$SALT_STATES_DIR" "$SALT_PILLARS_DIR"; do
+            cd $x
+            git fetch
+            /bin/echo -n "$(basename $x): "
+            git reset --hard origin/master
+        done
         ;;
     apply|call)
         shift
         salt-call state.highstate $ARGS $*
-        ;;
-    revert)
-        shift
-        test $MASTER -eq 1 || fail "'revert' can only be run on Salt master"
-        git --work-tree=$SALT_STATES_DIR --git-dir=$SALT_STATES_DIR/.git checkout -- .
-        git --work-tree=$SALT_PILLARS_DIR --git-dir=$SALT_PILLARS_DIR/.git checkout -- .
         ;;
     noop|status|st)
         shift

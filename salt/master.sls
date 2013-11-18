@@ -22,3 +22,12 @@ salt-master:
     - template: jinja
     - require:
         - file: /etc/iptables.d
+
+/usr/bin/ppr:
+  file.managed:
+    - source: salt://salt/bin/ppr
+    - mode: 700
+    - user: root
+    - group: root
+    - require:
+      - pkg: salt-minion
