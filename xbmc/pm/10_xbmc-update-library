@@ -1,0 +1,6 @@
+#!/bin/sh
+case "$1" in
+    resume|thaw)
+        curl --data-binary '{ "jsonrpc": "2.0", "method": "VideoLibrary.Scan", "id": "mybash"}' -H 'content-type: application/json;' http://localhost:8080/jsonrpc
+        ;;
+esac

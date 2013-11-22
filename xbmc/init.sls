@@ -30,9 +30,14 @@ xbmc:
     - source: salt://xbmc/ir-keytable.conf
     - mode: 755
 
+/etc/pm/sleep.d/10_xbmc-update-library:
+  file.managed:
+    - source: salt://xbmc/pm/10_xbmc-update-library
+    - mode: 755
+
 /etc/udev/rules.d/90-remote-wake.rules:
   file.managed:
-    - source: salt://xbmc/90-remote-wake.rules
+    - source: salt://xbmc/udev/90-remote-wake.rules
     - user: root
     - group: root
     - mode: 644
