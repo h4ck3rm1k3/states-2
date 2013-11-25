@@ -26,7 +26,9 @@ sabnzb_dependencies:
 
 /etc/sabnzbd:
   file.directory:
-    - mode: 755
+    - mode: 775
+    - user: root
+    - group: wheel
 
 /etc/sabnzbd/scripts.conf:
   file.managed:
@@ -38,6 +40,9 @@ sabnzb_dependencies:
 /etc/sabnzbd/scripts:
   file.recurse:
     - source: salt://sabnzbd/scripts
+    - user: root
+    - group: wheel
     - file_mode: 755
+    - dir_mode: 775
     - require:
         - file: /etc/sabnzbd
