@@ -33,8 +33,6 @@ def mkdirp(path):
 
 def main(job_dir, nzb, clean, index_num, category, group, status):
     config = get_config(CONFIG_FILE)
-    print config['tv_directory']
-    sys.exit()
 
     for fn in os.listdir(job_dir):
         ext = fn.rsplit('.', 1)[-1]
