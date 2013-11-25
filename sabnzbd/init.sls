@@ -36,6 +36,8 @@ sabnzb_dependencies:
         - file: /etc/sabnzbd
 
 /etc/sabnzbd/scripts:
-  file.recusrse:
+  file.recurse:
     - source: salt://sabnzbd/scripts
     - file_mode: 755
+    - require:
+        - file: /etc/sabnzbd
