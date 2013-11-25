@@ -23,3 +23,19 @@ sabnzb_dependencies:
       sabnzbd_port: {{ pillar.get('sabnzbd_port', '7777') }}
     - require:
         - file: /etc/iptables.d
+
+/etc/sabnzbd:
+  file.directory:
+    - mode: 755
+
+/etc/sabnzbd/scripts.conf:
+  file.managed:
+    - source: salt://sabnzbd/scripts.conf
+    - template: jinja
+    - require:
+        - file: /etc/sabnzbd
+
+/etc/sabnzbd/scripts:
+  file.recusrse:
+    - source: salt://sabnzbd/scripts
+    - file_mode: 755
