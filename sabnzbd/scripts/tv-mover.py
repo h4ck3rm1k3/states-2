@@ -17,13 +17,40 @@ def get_config(cfgfile):
     with open(cfgfile) as fh:
         for line in fh:
             k, v = re.split('\s+=\s+', line, 1)
-            config[k] = v
+            config[k] = v.strip()
     return config
 
 
-def mkdirp(path):
+def get_canonical_name(name):
+    """
+    Translates a dotted filename into the real name with spaces while
+    preserving acronyms.
+    """
+    if not name.endswith('.'):
+        name += '.'
+
+    regex = '((?:[A-Z]\.)+)'
+    acronyms = re.findall(regex, name)
+    parts = re.split(regex, name)
+
+    if not parts:
+        return name
+
+    canonical_name = []
+    for part in parts:
+        if part in acronyms:
+            part = re.sub('\.$', '', part)
+        else:
+            part = part.replace('.', ' ')
+        canonical_name.append(part.strip())
+    canonical_name = ' '.join(canonical_name)
+
+    return canonical_name.strip()
+
+
+def mkdirp(path, mode=0755):
     try:
-        os.makedirs(path)
+        os.makedirs(path, mode=mode)
     except OSError as exc:
         if exc.errno == errno.EEXIST and os.path.isdir(path):
             pass
@@ -45,7 +72,7 @@ def main(job_dir, nzb, clean, index_num, category, group, status):
 
         fn = os.path.join(job_dir, fn)
         dotted_name = string.capwords(match.group(1), '.')
-        canonical_name = dotted_name.replace('.', ' ')
+        canonical_name = get_canonical_name(dotted_name)
         show_dir = os.path.join(config['tv_directory'], canonical_name)
         season_dir = os.path.join(show_dir, 'Season %s' % int(match.group(2)))
 
@@ -55,7 +82,7 @@ def main(job_dir, nzb, clean, index_num, category, group, status):
             sys.stdout.write("File already exists: %s\n" % final_name)
             sys.exit(1)
 
-        mkdirp(season_directory)
+        mkdirp(season_dir)
         shutil.move(fn, final_name)
         shutil.rmtree(job_dir)
 
