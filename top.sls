@@ -14,19 +14,21 @@ base:
     - sudo
     - timezones
     - users
+  'os_family:Debian':
+    - match: grain
+    - apt
+  'os:Debian':
+    - match: grain
+    - debsecan
+    - apticron
   'helium.djl.im':
     - apache
-    - apt
-    - apticron
-    - debsecan
     - fstab
     - sabnzbd
     - sickbeard
     - smartmontools
   'iron.djl.im':
     - apache
-    - apt
-    - apticron
     - debsecan
     - dnsmasq
     - openvpn
@@ -35,6 +37,5 @@ base:
     - salt.master
     - znc
   'neon.djl.im':
-    - apt
     - fstab
     - xbmc
