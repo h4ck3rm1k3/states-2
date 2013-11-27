@@ -20,8 +20,6 @@ sabnzb_dependencies:
   file.managed:
     - source: salt://sabnzbd/iptables/50-sabnzbd.txt
     - template: jinja
-    - context:
-      sabnzbd_port: {{ pillar.get('sabnzbd_port', '7777') }}
     - require:
         - file: /etc/iptables.d
 

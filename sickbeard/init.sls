@@ -17,7 +17,5 @@ sickbeard_dependencies:
   file.managed:
     - source: salt://sickbeard/iptables/50-sickbeard.txt
     - template: jinja
-    - context:
-      sickbeard_port: {{ pillar.get('sickbeard_port', '8888') }}
     - require:
         - file: /etc/iptables.d
