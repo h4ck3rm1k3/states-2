@@ -3,6 +3,7 @@ sabnzb_dependencies:
     - names:
       - python-cheetah
       - python-openssl
+      - python-tvdb-api
       - python-yenc
 
 /etc/default/sabnzbd:

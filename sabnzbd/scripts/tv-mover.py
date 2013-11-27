@@ -5,6 +5,8 @@ import re
 import shutil
 import string
 import sys
+import tvdb_api
+from tvdb_exceptions import tvdb_error, tvdb_shownotfound
 
 
 CONFIG_FILE = '/etc/sabnzbd/scripts.conf'
@@ -45,7 +47,19 @@ def get_canonical_name(name):
         canonical_name.append(part.strip())
     canonical_name = ' '.join(canonical_name)
 
-    return canonical_name.strip()
+    # look up TheTVDB for the show name
+    canonical_name = get_tvdb_name(canonical_name)
+
+    return canonical_name
+
+
+def get_tvdb_name(show):
+    tvdb = tvdb_api.Tvdb()
+    try:
+        return tvdb[show]['seriesname']
+    except (tvdb_error, tvdb_shownotfound):
+        return show
+
 
 
 def mkdirp(path, mode=0755):
