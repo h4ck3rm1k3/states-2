@@ -4,13 +4,14 @@
   user.present:
     - home: /home/{{ user }}
     - shell: {{ args.get('shell', '/bin/bash') }}
-    - password: "!"
+    - password: {{ args.get('password', '!') }}
     - groups:
       - {{ user }}
     {% for group in args.get('groups', []) %}
       - {{ group }}
     {% endfor %}
     - require:
+      - group: {{ user }}
     {% for group in args.get('groups', []) %}
       - group: {{ group }}
     {% endfor %}
@@ -23,23 +24,18 @@
     - target: {{ args['alias'] }}
   {% endif %}
 
-# ssh keys
-/home/{{ user }}/.ssh:
-  file.directory:
+  {% if 'ssh_auth' in args %}
+  ssh_auth.present:
     - user: {{ user }}
-    - group: {{ user }}
-    - mode: 700
+    {% if 'source' in args['ssh_auth'] %}
+    - source: {{ args['ssh_auth']['source'] }}
+    {% else %}
+    - name: {{ args['ssh_auth']['name'] }}
+    - enc: {{ args['ssh_auth']['enc'] }}
+    {% endif %}
     - require:
       - user: {{ user }}
-
-/home/{{ user }}/.ssh/authorized_keys:
-  file.managed:
-    - user: {{ user }}
-    - group: {{ user }}
-    - mode: 600
-    - source: salt://keys/{{ user }}.pub
-    - require:
-      - file: /home/{{ user }}/.ssh
+  {% endif %}
 
 # user's groups
 {% for group in args.get('groups', []) %}
