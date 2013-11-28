@@ -1,4 +1,25 @@
-sabnzb_dependencies:
+sabnzbdplus:
+  pkgrepo.managed:
+    - name: deb http://ftp.uk.debian.org/debian/ testing contrib
+    - file: /etc/apt/sources.list.d/testing.list
+    - require_in:
+      - pkg: sabnzbdplus
+    - require:
+      - pkg: sabnzbdplus_dependencies
+
+  pkg.latest:
+    - fromrepo: sabnzbdplus
+    - require:
+      - file: /etc/default/sabnzbdplus
+
+  service.running:
+    - enable: True
+    - require:
+      - pkg: sabnzbdplus
+    - watch:
+      - file: /etc/default/sabnzbdplus
+
+sabnzbdplus_dependencies:
   pkg.installed:
     - names:
       - python-cheetah
@@ -6,15 +27,10 @@ sabnzb_dependencies:
       - python-tvdb-api
       - python-yenc
 
-/etc/default/sabnzbd:
+/etc/default/sabnzbdplus:
   file.managed:
-    - source: salt://sabnzbd/sabnzbd.conf.jinja
+    - source: salt://sabnzbd/sabnzbdplus.default.jinja
     - template: jinja
-
-/etc/init.d/sabnzbd:
-  file.managed:
-    - source: salt://sabnzbd/sabnzbd.init
-    - mode: 755
 
 /etc/iptables.d/50-sabnzbd.txt:
   file.managed:

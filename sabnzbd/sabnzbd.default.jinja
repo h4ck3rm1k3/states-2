@@ -1,0 +1,5 @@
+USER={{ pillar.get('sabnzbdplus_user', 'sabnzbd') }}
+CONFIG={{ pillar.get('sabnzbdplus_config', '/etc/sabnzbd/sabnzbd.ini') }}
+HOST={{ pillar.get('sabnzbdplus_host', '0.0.0.0') }}
+PORT={{ pillar.get('sabnzbdplus_port', '7777') }}
+EXTRAOPTS={{ pillar.get('sabnzbdplus_extraopts', '') }}
