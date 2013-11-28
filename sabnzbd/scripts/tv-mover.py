@@ -93,12 +93,27 @@ def main(job_dir, nzb, clean, index_num, category, group, status):
         filename = "%s.s%se%s.%s" % (dotted_name, match.group(2), match.group(3), ext)
         final_name = os.path.join(season_dir, filename)
         if os.path.isfile(final_name):
-            sys.stdout.write("File already exists: %s\n" % final_name)
+            print("File already exists: %s" % final_name)
             sys.exit(1)
 
+        # create the full path to the new location, move the file over
+        # and remove the directory
         mkdirp(season_dir)
         shutil.move(fn, final_name)
         shutil.rmtree(job_dir)
+
+        print("New file: %s" % final_name)
+
+        # try to remove the empty category directories
+        parent_dirname = os.path.dirname(os.path.abspath(job_dir))
+        parent_basename = os.path.basename(parent_dirname)
+        if parent_basename == category:
+            try:
+                os.rmdir(parent_dirname)
+                print("Removed empty directory: %s" % parent_dirname)
+            except OSError:
+                print("Skipped non-empty directory: %s" % parent_dirname)
+                pass
 
 
 if __name__ == '__main__':
