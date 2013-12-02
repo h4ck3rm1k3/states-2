@@ -65,6 +65,8 @@ def get_tvdb_name(show):
 def mkdirp(path, mode=0755):
     try:
         os.makedirs(path, mode=mode)
+        for r, _, _ in os.walk(path):
+            os.chmod(os.path.join(path, r), mode)
     except OSError as exc:
         if exc.errno == errno.EEXIST and os.path.isdir(path):
             pass
