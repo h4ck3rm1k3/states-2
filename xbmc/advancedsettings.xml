@@ -2,8 +2,7 @@
   <network>
     <disableipv6>true</disableipv6>
   </network>
-</advancedsettings>
-
-<videolibrary>
+  <videolibrary>
     <dateadded>0</dateadded>
-</videolibrary>
+  </videolibrary>
+</advancedsettings>
