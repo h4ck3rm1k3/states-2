@@ -3,7 +3,7 @@ xbmc:
     - installed
 
   pkgrepo.managed:
-    - ppa: nathan-renniewaldock/xbmc-stable
+    - ppa: team-xbmc/unstable
     - require_in:
       - pkg: xbmc
 
