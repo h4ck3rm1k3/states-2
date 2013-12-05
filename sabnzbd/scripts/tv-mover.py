@@ -117,7 +117,7 @@ def main(job_dir, nzb, clean, index_num, category, group, status):
         # try to remove the empty category directories
         parent_dirname = os.path.dirname(os.path.abspath(job_dir))
         parent_basename = os.path.basename(parent_dirname)
-        if parent_basename == category:
+        if parent_basename.lower() == category.lower():
             try:
                 os.rmdir(parent_dirname)
                 print("Removed empty directory: %s" % parent_dirname)
