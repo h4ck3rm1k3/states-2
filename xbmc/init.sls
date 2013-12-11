@@ -33,6 +33,7 @@ xbmc:
 /etc/iptables.d/50-xbmc.txt:
   file.managed:
     - source: salt://xbmc/iptables/50-xbmc.txt
+    - template: jinja
     - require:
       - file: /etc/iptables.d
 
