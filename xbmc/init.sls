@@ -30,6 +30,12 @@ xbmc:
     - source: salt://xbmc/ir-keytable.conf
     - mode: 755
 
+/etc/iptables.d/50-xbmc.txt:
+  file.managed:
+    - source: salt://xbmc/iptables/xbmc.txt
+    - require:
+      - file: /etc/iptables.d
+
 /etc/pm/sleep.d/10_xbmc-update-library:
   file.managed:
     - source: salt://xbmc/pm/10_xbmc-update-library
