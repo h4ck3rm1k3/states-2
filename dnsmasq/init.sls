@@ -15,3 +15,5 @@ dnsmasq:
 /etc/iptables.d/50-dnsmasq.txt:
   file.managed:
     - source: salt://dnsmasq/iptables/50-dnsmasq.txt
+    - require:
+      - file: /etc/iptables.d

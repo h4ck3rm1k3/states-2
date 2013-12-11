@@ -43,7 +43,7 @@ apache2:
   file.managed:
     - source: salt://apache/iptables/50-http.txt
     - require:
-      - pkg: apache2
+      - file: /etc/iptables.d
 
 /etc/monit/conf.d/apache2:
   file.managed:
