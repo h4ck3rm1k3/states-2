@@ -7,7 +7,7 @@
     {%- if args.get('force_ssl', False) %}
     RewriteEngine on
     RewriteCond %{HTTPS} !=on
-    Redirect permanent / https://%{HTTP_HOST}%{REQUEST_URI}
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
     {%- endif %}
 
     DocumentRoot /var/www/{{ args.fqdn }}
