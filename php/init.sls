@@ -5,6 +5,8 @@ php_packages:
         - php5-cli
         - php5-common
         - php5-curl
+        - php5-gd
+        - php5-sqlite
 
 /etc/php5/apache2/conf.d/10-custom.ini:
   file.managed:

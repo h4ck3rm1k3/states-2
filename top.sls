@@ -33,7 +33,6 @@ base:
     - dnsmasq
     - openvpn
     - php
-    - owncloud
     - salt.master
     - znc
   'neon.djl.im':
