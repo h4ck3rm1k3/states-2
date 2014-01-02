@@ -27,6 +27,7 @@ base:
     - sabnzbd
     - sickbeard
     - smartmontools
+    - unbound
   'iron.djl.im':
     - apache
     - debsecan
