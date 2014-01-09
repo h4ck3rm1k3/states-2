@@ -3,7 +3,7 @@ xbmc:
     - installed
 
   pkgrepo.managed:
-    - ppa: team-xbmc/nightly
+    - ppa: team-xbmc/ppa
     - require_in:
       - pkg: xbmc
 
