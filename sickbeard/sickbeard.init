@@ -34,6 +34,11 @@ set -e
 
 . /lib/lsb/init-functions
 
+if [ ! -d $PID_DIR ]; then
+    mkdir -p $PID_DIR
+    chown $RUN_AS.$RUN_AS $PID_DIR
+fi
+
 if [ -e $PID_FILE ]; then
     PID=`cat $PID_FILE`
     if ! kill -0 $PID > /dev/null 2>&1; then
