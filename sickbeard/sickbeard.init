@@ -34,10 +34,8 @@ set -e
 
 . /lib/lsb/init-functions
 
-if [ ! -d $PID_DIR ]; then
-    mkdir -p $PID_DIR
-    chown $RUN_AS.$RUN_AS $PID_DIR
-fi
+mkdir -p $(dirname $PID_FILE)
+chown $RUN_AS.$RUN_AS $(dirname $PID_FILE)
 
 if [ -e $PID_FILE ]; then
     PID=`cat $PID_FILE`
