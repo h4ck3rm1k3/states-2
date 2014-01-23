@@ -9,6 +9,7 @@ apache2:
     - watch:
       - file: /etc/apache2/apache2.conf
       - file: /etc/apache2/conf.d/*
+      - file: /etc/apache2/sites-available/*
       - file: /etc/apache2/sites-enabled/*
 
 /etc/apache2/apache2.conf:
