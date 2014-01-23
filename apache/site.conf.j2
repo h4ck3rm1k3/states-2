@@ -39,7 +39,11 @@
     SSLCACertificateFile /etc/ssl/sites/{{ args.fqdn }}.pem
     Header add Strict-Transport-Security "max-age=15768000{% if args.get('sts_include_subdomains', False) %}; includeSubdomains{% endif %}"
 
+    {%- if 'document_root' in args %}
+    DocumentRoot {{ args.document_root }}
+    {%- else %}
     DocumentRoot /var/www/{{ args.fqdn }}
+    {%- endif %}
     Options -Indexes
 
     ErrorLog /var/log/apache2/{{ args.fqdn }}/error.log
