@@ -13,7 +13,7 @@ mysql-server:
   mysql_user.present:
     - name: root
     - host: localhost
-    - password_hash: {{ pillar['mysql.pass'] }}
+    - password_hash: "{{ pillar['mysql.pass'] }}"
     - connection_pass: ""
     - watch:
       - pkg: mysql-server
@@ -42,7 +42,7 @@ mysql_database_{{ db }}:
 mysql_user_{{ user['name'] }}:
   mysql_user.present:
     - name: {{ user['name'] }}
-    - password_hash: {{ user['name'] }}
+    - password_hash: "{{ user['password_hash'] }}"
 
 mysql_grant_{{ db }}_{{ user['name'] }}:
   mysql_grants.present:
