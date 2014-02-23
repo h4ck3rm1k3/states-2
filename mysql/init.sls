@@ -35,8 +35,8 @@ mysql-client:
 
 {% for db, args in pillar.get('mysql_databases', {}).items() %}
 mysql_database_{{ db }}:
-  mysqldb:
-    - present
+  mysql_database.present:
+    - name: {{ db }}
 
 {% for user in args['users'] %}
 mysql_user_{{ user['name'] }}:
