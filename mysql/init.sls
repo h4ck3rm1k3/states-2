@@ -1,10 +1,8 @@
 mysql-server:
-  pkg:
-    - installed
+  pkg.installed:
     - debconf: salt://mysql/mysql.deb.set
 
-  service:
-    - running
+  service.running:
     - name: mysql
     - enable: True
     - watch:
@@ -17,7 +15,7 @@ mysql-server:
     - connection_pass: ""
     - watch:
       - pkg: mysql-server
-      - service: mysqld
+      - service: mysql
 
 mysql-client:
   pkg:
