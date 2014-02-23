@@ -12,7 +12,7 @@ mysql-server:
     - name: root
     - host: localhost
     - password: "{{ pillar['mysql.pass'] }}"
-    - connection_pass: "{{ pillar['mysql.pass'] }}"
+    - connection_pass: "somepass"
     - watch:
       - pkg: mysql-server
       - service: mysql
