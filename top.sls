@@ -31,6 +31,7 @@ base:
     - apache
     - debsecan
     - dnsmasq
+    - mysql
     - openvpn
     - php
     - salt.master
