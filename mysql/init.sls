@@ -29,7 +29,7 @@ mysql-client:
     - mode: 644
     - template: jinja
     - watch_in:
-      - service: mysqld
+      - service: mysql
 
 {% for db, args in pillar.get('mysql_databases', {}).items() %}
 mysql_database_{{ db }}:
