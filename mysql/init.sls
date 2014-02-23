@@ -53,6 +53,6 @@ mysql_grant_{{ db }}_{{ user['name'] }}:
 
 /etc/monit/conf.d/mysql:
   file.managed:
-    - source: salt://apache/monit/mysql
+    - source: salt://mysql/monit/mysql
     - require:
       - pkg: monit
