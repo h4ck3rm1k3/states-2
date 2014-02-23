@@ -50,3 +50,9 @@ mysql_grant_{{ db }}_{{ user['name'] }}:
     - grant: {{ user['grant'] }}
 {% endfor %}
 {% endfor %}
+
+/etc/monit/conf.d/mysql:
+  file.managed:
+    - source: salt://apache/monit/mysql
+    - require:
+      - pkg: monit
