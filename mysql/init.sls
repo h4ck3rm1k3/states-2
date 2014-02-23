@@ -6,7 +6,7 @@ mysql-server:
     - name: mysql
     - enable: True
     - watch:
-      - pkg: mysqld
+      - pkg: mysql-server
 
   mysql_user.present:
     - name: root
