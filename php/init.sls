@@ -6,6 +6,7 @@ php_packages:
         - php5-common
         - php5-curl
         - php5-gd
+        - php5-mysql
         - php5-sqlite
 
 /etc/php5/apache2/conf.d/10-custom.ini:
