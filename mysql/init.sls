@@ -41,8 +41,8 @@ mysql_database_{{ db }}:
 {% for user in args['users'] %}
 mysql_user_{{ user['name'] }}:
   mysql_user.present:
-    - name: {{ args['name'] }}
-    - password_hash: {{ args['name'] }}
+    - name: {{ user['name'] }}
+    - password_hash: {{ user['name'] }}
 
 mysql_grant_{{ db }}_{{ user['name'] }}:
   mysql_grants.present:
