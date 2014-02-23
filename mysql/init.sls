@@ -38,7 +38,7 @@ mysql_database_{{ db }}:
   mysqldb:
     - present
 
-{% for user in args['users'].items() %}
+{% for user in args['users'] %}
 mysql_user_{{ user['name'] }}:
   mysql_user.present:
     - name: {{ args['name'] }}
