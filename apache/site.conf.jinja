@@ -4,7 +4,7 @@
     ServerAlias {{ args.aliases|join(" ") }}
     {%- endif %}
 
-    {%- if args.get('force_ssl', False) %}
+    {%- if args.get('ssl', False) and args.get('force_ssl', False) %}
     RewriteEngine on
     RewriteCond %{HTTPS} !=on
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
