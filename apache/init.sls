@@ -58,7 +58,7 @@ apache2:
     - require:
       - pkg: logrotate
 
-{% for site, args in pillar.get('apache_sites', {}).items() %}
+{% for site, args in pillar.get('apache.sites', {}).items() %}
 /var/log/apache2/{{ args.fqdn }}:
   file.directory:
     - require:

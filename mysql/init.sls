@@ -31,7 +31,7 @@ mysql-client:
     - watch_in:
       - service: mysql
 
-{% for db, args in pillar.get('mysql_databases', {}).items() %}
+{% for db, args in pillar.get('mysql.databases', {}).items() %}
 mysql_database_{{ db }}:
   mysql_database.present:
     - name: {{ db }}
