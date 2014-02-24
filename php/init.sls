@@ -11,4 +11,5 @@ php_packages:
 
 /etc/php5/apache2/conf.d/10-custom.ini:
   file.managed:
-    - source: salt://php/10-custom.ini
+    - source: salt://php/10-custom.ini.jinja
+    - template: jinja

@@ -1,0 +1,3 @@
+{%- for key, value in pillar.get('php.ini_settings', {}).items() -%}
+{{ key }} = {{ value }}
+{% endfor %}
