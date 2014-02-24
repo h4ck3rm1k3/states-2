@@ -66,6 +66,8 @@ apache2:
 
 /var/www/{{ args.fqdn }}:
   file.directory:
+    - user: {{ args.get('user', 'www-data') }}
+    - group: {{ args.get('group', 'www-data') }}
     - require:
       - pkg: apache2
 
