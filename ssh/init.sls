@@ -10,7 +10,7 @@ ssh:
 
 /etc/ssh/sshd_config:
   file.managed:
-    - source: salt://ssh/sshd_config
+    - source: salt://ssh/sshd_config.jinja
     - template: jinja
 
 /etc/monit/conf.d/ssh:

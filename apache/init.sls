@@ -14,7 +14,7 @@ apache2:
 
 /etc/apache2/apache2.conf:
   file.managed:
-    - source: salt://apache/apache2.conf.j2
+    - source: salt://apache/apache2.conf.jinja
     - template: jinja
     - require:
       - pkg: apache2
@@ -73,7 +73,7 @@ apache2:
 
 /etc/apache2/sites-available/{{ args.fqdn }}.conf:
   file.managed:
-    - source: salt://apache/site.conf.j2
+    - source: salt://apache/site.conf.jinja
     - template: jinja
     - context:
         site: {{ site }}
