@@ -15,7 +15,7 @@ iptables:
     - require:
       - file: /etc/iptables.d
 
-{% if pillar.get('iptables_custom_rules', []) %}
+{% if pillar.get('iptables.custom_rules', []) %}
 /etc/iptables.d/50-custom-rules.txt:
   file.managed:
     - source: salt://iptables/rules/50-custom-rules.txt

@@ -1,5 +1,5 @@
 *filter
 
--A INPUT -p tcp --dport {{ pillar.get('znc_port', '6667') }} -j ACCEPT
+-A INPUT -p tcp --dport {{ pillar.get('znc.port', '6667') }} -j ACCEPT
 
 COMMIT

@@ -12,7 +12,7 @@
 # virtual hosts, and extra configuration directives as flexible as possible, in
 # order to make automating the changes and administering the server as easy as
 # possible.
-ServerName {{ pillar.get('apache_server_name', grains['fqdn']) }}
+ServerName {{ pillar.get('apache.server_name', grains['fqdn']) }}
 
 # It is split into several files forming the configuration hierarchy outlined
 # below, all located in the /etc/apache2/ directory:
@@ -239,7 +239,7 @@ ErrorLog ${APACHE_LOG_DIR}/error.log
 # Possible values include: debug, info, notice, warn, error, crit,
 # alert, emerg.
 #
-LogLevel {{ pillar.get('apache_log_level', 'error') }}
+LogLevel {{ pillar.get('apache.log_level', 'error') }}
 
 # Include module configuration:
 Include mods-enabled/*.load

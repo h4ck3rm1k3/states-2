@@ -1,6 +1,6 @@
 *filter
 
-{%- for rule in pillar.get('iptables_custom_rules') %}
+{%- for rule in pillar.get('iptables.custom_rules') %}
 {{ rule }}
 {%- endfor %}
 
