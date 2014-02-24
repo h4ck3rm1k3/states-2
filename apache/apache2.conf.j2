@@ -239,7 +239,7 @@ ErrorLog ${APACHE_LOG_DIR}/error.log
 # Possible values include: debug, info, notice, warn, error, crit,
 # alert, emerg.
 #
-LogLevel {{ pillar.get('apache_log_level', 'warn') }}
+LogLevel {{ pillar.get('apache_log_level', 'error') }}
 
 # Include module configuration:
 Include mods-enabled/*.load
