@@ -16,6 +16,10 @@
     ErrorLog /var/log/apache2/{{ args.fqdn }}/error.log
     CustomLog /var/log/apache2/{{ args.fqdn }}/access.log common
 
+    {%- for k, v in args.get('custom_options', {}).items() %}
+    {{ k }} {{ v }}
+    {%- endfor %}
+
     <Directory /var/www/{{ args.fqdn }}>
         AllowOverride All
         Order allow,deny
@@ -48,6 +52,10 @@
 
     ErrorLog /var/log/apache2/{{ args.fqdn }}/error.log
     CustomLog /var/log/apache2/{{ args.fqdn }}/access.log common
+
+    {%- for k, v in args.get('custom_options', {}).items() %}
+    {{ k }} {{ v }}
+    {%- endfor %}
 
     <Directory /var/www/{{ args.fqdn }}>
         AllowOverride All
