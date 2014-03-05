@@ -7,6 +7,7 @@ base:
     - motd
     - ntp
     - packages
+    - pam
     - postfix
     - salt.common
     - salt.minion
