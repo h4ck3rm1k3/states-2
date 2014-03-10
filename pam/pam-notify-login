@@ -7,5 +7,5 @@
   echo "TTY: $PAM_TTY"
   echo "Date: `date`"
   echo "Server: `uname -a`"
-} | mail -s "$PAM_SERVICE login on $(hostname -s) for account $PAM_USER" root
+} | mail -s "$PAM_SERVICE login on $(hostname) for account $PAM_USER" root
 exit 0
