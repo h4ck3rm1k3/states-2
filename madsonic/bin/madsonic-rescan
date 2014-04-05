@@ -1,0 +1,44 @@
+#!/bin/sh
+#/ Usage: madsonic-rescan [options] <URL> <username> <password>
+#/
+#/ Options:
+#/   -s               Scan type (full|full-clean|clean|quick)
+#/   -h               Show this message and exit
+
+SCAN_TYPE="musicFolderSettings.view?scanNow"
+
+abort() {
+  echo "$PROGNAME: $1" >&2
+  exit 1
+}
+
+usage() {
+  grep "^#/" $0 | cut -c4- >&2
+  exit 2
+}
+
+while getopts :hs: o; do
+  case "$o" in
+    s)
+      case "$OPTARG" in
+        full) SCAN_TYPE="folderSettings.view?FullScanNow";;
+        full-clean) SCAN_TYPE="folderSettings.view?FullCleanupNow" ;;
+        clean) SCAN_TYPE"folderSettings.view?expunge" ;;
+        *) SCAN_TYPE="musicFolderSettings.view?scanNow"
+      esac
+      ;;
+    h) usage ;;
+    ?) abort "Invalid option: -$OPTARG" ;;
+  esac
+done
+
+shift $((OPTIND-1))
+
+if [ $# -ne 3 ]; then
+  grep "^#/" $0 | cut -c4- >&2
+  exit 1
+fi
+
+COOKIE_JAR="/tmp/madsonic-cookies.$RANDOM.txt"
+curl --data "j_username=$2&j_password=$3" "$1/j_acegi_security_check" --cookie-jar "$COOKIE_JAR"
+curl --cookie "$COOKIE_JAR" "$1/musicFolderSettings.view?scanNow" > /dev/null

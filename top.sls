@@ -25,6 +25,7 @@ base:
   'helium.djl.im':
     - apache
     - fstab
+    - madsonic
     - sabnzbd
     - sickbeard
     - smartmontools

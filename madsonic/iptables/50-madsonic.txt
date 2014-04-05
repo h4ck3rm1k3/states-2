@@ -1,0 +1,6 @@
+*filter
+
+# madsonic
+-A INPUT -p tcp --dport {{ pillar.get('madsonic_port', '4040') }} -j ACCEPT
+
+COMMIT
