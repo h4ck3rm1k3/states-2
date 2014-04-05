@@ -5,7 +5,7 @@ salt-minion:
   service.running:
     - enable: True
     - watch:
-        - file: /etc/salt/minion
+      - file: /etc/salt/minion
 
 /etc/salt/minion:
   file.managed:
