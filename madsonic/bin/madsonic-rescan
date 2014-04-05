@@ -40,5 +40,5 @@ if [ $# -ne 3 ]; then
 fi
 
 COOKIE_JAR="/tmp/madsonic-cookies.$RANDOM.txt"
-curl --data "j_username=$2&j_password=$3" "$1/j_acegi_security_check" --cookie-jar "$COOKIE_JAR"
-curl --cookie "$COOKIE_JAR" "$1/musicFolderSettings.view?scanNow" > /dev/null
+curl -s --data "j_username=$2&j_password=$3" "$1/j_acegi_security_check" --cookie-jar "$COOKIE_JAR"
+curl -s --cookie "$COOKIE_JAR" "$1/musicFolderSettings.view?scanNow" > /dev/null
