@@ -5,9 +5,9 @@
     - require:
         - file: /etc/iptables.d
 
-/usr/bin/madsonic-restart:
+/usr/bin/madsonic-rescan:
   file.managed:
-    - source: salt://madsonic/bin/madsonic-restart
-    - mode: 700
+    - source: salt://madsonic/bin/madsonic-rescan
+    - mode: 755
     - user: root
     - group: root
