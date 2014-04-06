@@ -31,7 +31,6 @@ base:
     - smartmontools
   'iron.djl.im':
     - apache
-    - debsecan
     - dnsmasq
     - mysql
     - openvpn
