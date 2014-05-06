@@ -48,3 +48,10 @@ xbmc:
     - user: root
     - group: root
     - mode: 644
+
+/lib/udev/rc_keymaps/rc6_mce:
+  file.managed:
+    - source: salt://xbmc/rc_keymaps/rc6_mce
+    - user: root
+    - group: root
+    - mode: 644
