@@ -64,7 +64,6 @@ def get_tvdb_name(show):
         return show
 
 
-
 def mkdirp(path, mode=0755):
     try:
         os.makedirs(path, mode=mode)
@@ -73,12 +72,6 @@ def mkdirp(path, mode=0755):
             pass
         else:
             raise
-
-    # os.makedirs seems to randomly ignore the mode argument
-    # so we have to manually set the mode on each directory
-    for r, _, _ in os.walk(path):
-        os.chmod(os.path.join(path, r), mode)
-
 
 
 def main(job_dir, nzb, clean, index_num, category, group, status):
@@ -89,8 +82,8 @@ def main(job_dir, nzb, clean, index_num, category, group, status):
     #
     # If no files match PATTERN but we do find one or more files with
     # a suitable extension we assume the largest file is the one we
-    # want. We take this file use the ``job_dir`` as the base for the
-    # new file name.
+    # want. We take this file and use the ``job_dir`` as the base for
+    # the new file name.
     match = None
     files_by_size = []
     for fn in os.listdir(job_dir):
@@ -105,7 +98,6 @@ def main(job_dir, nzb, clean, index_num, category, group, status):
             break
 
     files_by_size = sorted(files_by_size, key=lambda x: x[1])
-    original_name = None
 
     if not match:
         # no files at all? just exit
@@ -120,31 +112,25 @@ def main(job_dir, nzb, clean, index_num, category, group, status):
             print("No suitable files found")
             sys.exit()
 
-
-    original_name = fn
     fn = os.path.join(job_dir, fn)
     dotted_name = string.capwords(match.group(1), '.').replace('_', '.')
     canonical_name = get_canonical_name(dotted_name)
     show_dir = os.path.join(config['tv_directory'], canonical_name)
     season_dir = os.path.join(show_dir, 'Season %s' % int(match.group(2)))
 
-    filename = "%s.s%se%s.%s" % (dotted_name, match.group(2), match.group(3), ext)
-    final_name = os.path.join(season_dir, filename)
+    vfile = "%s.s%se%s.%s" % (dotted_name, match.group(2), match.group(3), ext)
+    final_name = os.path.join(season_dir, vfile)
     if os.path.isfile(final_name):
         print("File already exists: %s" % final_name)
         sys.exit(1)
 
     # create the full path to the new location, move the file over
     # and remove the old directory
-    mkdirp(show_dir)
     mkdirp(season_dir)
-    shutil.move(fn, final_name)
+    shutil.move(os.path.join(job_dir, fn), final_name)
     shutil.rmtree(job_dir)
 
-    msg = "New file: %s" % final_name
-    if original_name is not None:
-        msg = "%s (renamed from %s)" % (msg, original_name)
-    print(msg)
+    print("New file: %s (%s)" % (final_name, os.path.basename(fn)))
 
     # try to remove the empty category directories
     parent_dirname = os.path.dirname(os.path.abspath(job_dir))
