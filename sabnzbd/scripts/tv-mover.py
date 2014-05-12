@@ -73,6 +73,9 @@ def mkdirp(path, mode=0755):
         else:
             raise
 
+    for r, _, _ in os.walk(path):
+        os.chmod(os.path.join(path, r), mode)
+
 
 def main(job_dir, nzb, clean, index_num, category, group, status):
     config = get_config(CONFIG_FILE)
@@ -126,6 +129,7 @@ def main(job_dir, nzb, clean, index_num, category, group, status):
 
     # create the full path to the new location, move the file over
     # and remove the old directory
+    mkdirp(show_dir)
     mkdirp(season_dir)
     shutil.move(os.path.join(job_dir, fn), final_name)
     shutil.rmtree(job_dir)
