@@ -22,6 +22,12 @@ base:
     - match: grain
     - debsecan
     - apticron
+  'carbon.djl.im':
+    - apache
+    - dnsmasq
+    - mysql
+    - php
+    - znc
   'helium.djl.im':
     - apache
     - fstab
