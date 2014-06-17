@@ -94,3 +94,11 @@ apache2:
       - pkg: /etc/apache2/sites-enabled
 {% endif %}
 {% endfor %}
+
+{% for module in pillar.get('apache.modules', []) %}
+a2enmod {{ module }}:
+  cmd.run:
+    - unless: test -f /etc/apache2/mods-enabled/{{ module }}.load
+    - require:
+      - pkg: apache2
+{% endfor %}
