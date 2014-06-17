@@ -24,7 +24,6 @@ base:
     - apticron
   'carbon.djl.im':
     - apache
-    - dnsmasq
     - mysql
     - php
     - znc
