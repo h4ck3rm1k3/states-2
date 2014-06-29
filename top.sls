@@ -36,14 +36,6 @@ base:
     - sickbeard
     - smartmontools
     - unbound
-  'iron.djl.im':
-    - apache
-    - dnsmasq
-    - mysql
-    - openvpn
-    - php
-    - salt.master
-    - znc
   'neon.djl.im':
     - fstab
     - xbmc
