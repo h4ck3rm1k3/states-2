@@ -22,12 +22,6 @@ base:
     - match: grain
     - debsecan
     - apticron
-  'fox.djl.im':
-    - apache
-    - mysql
-    - php
-    - salt.master
-    - znc
   'helium.djl.im':
     - apache
     - fstab
@@ -36,6 +30,12 @@ base:
     - sickbeard
     - smartmontools
     - unbound
+  'iron.djl.im':
+    - apache
+    - mysql
+    - php
+    - salt.master
+    - znc
   'neon.djl.im':
     - fstab
     - xbmc
