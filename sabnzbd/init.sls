@@ -37,7 +37,7 @@ sabnzbdplus_dependencies:
     - source: salt://sabnzbd/iptables/50-sabnzbd.txt
     - template: jinja
     - require:
-        - file: /etc/iptables.d
+      - file: /etc/iptables.d
 
 /etc/sabnzbd:
   file.directory:
@@ -50,7 +50,7 @@ sabnzbdplus_dependencies:
     - source: salt://sabnzbd/scripts.conf
     - template: jinja
     - require:
-        - file: /etc/sabnzbd
+      - file: /etc/sabnzbd
 
 /etc/sabnzbd/scripts:
   file.recurse:
@@ -60,4 +60,4 @@ sabnzbdplus_dependencies:
     - file_mode: 755
     - dir_mode: 775
     - require:
-        - file: /etc/sabnzbd
+      - file: /etc/sabnzbd
