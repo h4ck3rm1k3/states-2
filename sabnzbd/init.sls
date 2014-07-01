@@ -24,6 +24,7 @@ sabnzbdplus_dependencies:
     - names:
       - python-cheetah
       - python-openssl
+      - python-requests
       - python-tvdb-api
       - python-yenc
 
