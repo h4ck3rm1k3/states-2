@@ -12,7 +12,7 @@ from tmdbsimple import TMDB
 CONFIG_FILE = '/etc/sabnzbd/scripts.conf'
 EXTENSIONS = ['avi', 'm4v', 'mkv', 'mp4']
 SUB_EXTENSIONS = ['idx', 'sub', 'srt']
-PATTERN = re.compile('^(.*)(\d{4})(.*)', re.I)
+PATTERN = re.compile('^(.*)(\d{4})\.(.*)', re.I)
 
 
 def get_config(cfgfile):
