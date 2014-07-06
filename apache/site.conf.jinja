@@ -38,9 +38,9 @@
     SSLProtocol -ALL -SSLv3 +TLSv1 +TLSv1.1 +TLSv1.2
     SSLHonorCipherOrder On
     SSLCipherSuite ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:RC4-SHA:AES256-GCM-SHA384:AES256-SHA256:CAMELLIA256-SHA:ECDHE-RSA-AES128-SHA:AES128-GCM-SHA256:AES128-SHA256:AES128-SHA:CAMELLIA128-SHA
-    SSLCertificateFile /etc/ssl/sites/{{ args.fqdn }}.crt
-    SSLCertificateKeyFile /etc/ssl/sites/{{ args.fqdn }}.key
-    SSLCACertificateFile /etc/ssl/sites/{{ args.fqdn }}.pem
+    SSLCertificateFile /etc/ssl/certs/wildcard_public_cert.crt
+    SSLCertificateKeyFile /etc/ssl/certs/wildcard_private.key
+    SSLCACertificateFile /etc/ssl/private/wildcard_ca.pem
     Header add Strict-Transport-Security "max-age=15768000{% if args.get('sts_include_subdomains', False) %}; includeSubdomains{% endif %}"
 
     {%- if 'document_root' in args %}
