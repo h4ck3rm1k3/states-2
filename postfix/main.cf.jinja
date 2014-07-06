@@ -7,11 +7,37 @@ mailbox_command = procmail -a "$EXTENSION"
 mailbox_size_limit = 0
 mydestination = {{ grains['fqdn'] }}, localhost.local, localhost
 myhostname = {{ grains['fqdn'] }}
-mynetworks = 127.0.0.0/8 192.168.0.0/16 [::ffff:127.0.0.0]/104 [::1]/128
+mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
 myorigin = $myhostname
 readme_directory = no
 recipient_delimiter = +
 relayhost =
+
+sender_dependent_relayhost_maps = hash:/etc/postfix/sender_relay
+
+smtp_sasl_auth_enable = yes
+smtp_sasl_mechanism_filter = plain
+smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+smtp_sasl_tls_security_options = noanonymous
+smtp_sender_dependent_authentication = yes
+smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt
+smtp_tls_CApath = /etc/ssl/certs
+smtp_tls_security_level = may
+smtp_use_tls = yes
+
 smtpd_banner = $myhostname ESMTP $mail_name
-smtpd_client_restrictions =
-    permit_mynetworks
+smtpd_sasl_auth_enable = yes
+smtpd_sasl_path = private/auth
+smtpd_sasl_security_options = noanonymous
+smtpd_sasl_type = dovecot
+smtpd_tls_auth_only = yes
+smtpd_tls_cert_file = /etc/ssl/certs/wildcard_combined.pem
+smtpd_tls_key_file = /etc/ssl/private/wildcard_private.key
+smtpd_tls_security_level = encrypt
+smtpd_use_tls = yes
+smtpd_recipient_restrictions =
+   permit_sasl_authenticated,
+   reject_unauth_destination
+
+mime_header_checks = regexp:/etc/postfix/header_checks
+header_checks = regexp:/etc/postfix/header_checks

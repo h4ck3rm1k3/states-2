@@ -1,0 +1,3 @@
+{% for user, args in pillar.get('postfix.passwd_users', {}).items() %}
+{{ user}}:{{ args['password'] }}:{{ args['uid'] }}:{{ args['gid'] }}
+{% endfor %}
