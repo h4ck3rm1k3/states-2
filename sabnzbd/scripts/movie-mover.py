@@ -1,18 +1,20 @@
 #!/usr/bin/env python
 import errno
+import json
 import os
 import re
 import shutil
 import string
 import sys
 
-from tmdbsimple import TMDB
+import requests
 
 
 CONFIG_FILE = '/etc/sabnzbd/scripts.conf'
 EXTENSIONS = ['avi', 'm4v', 'mkv', 'mp4']
 SUB_EXTENSIONS = ['idx', 'sub', 'srt']
 PATTERN = re.compile('^(.*)(\d{4})\.(.*)', re.I)
+ENDPOINT = 'https://api.themoviedb.org/3/search/movie'
 
 
 def get_config(cfgfile):
@@ -94,10 +96,14 @@ def get_canonical_name(name, year):
 
 
 def get_tmdb_name(name, year):
-    tmdb = TMDB(CONFIG['TMDB_API_KEY'])
-    search = tmdb.Search()
-    response = search.movie({'query': name})
-    for r in response['results']:
+    headers = {'Accept': 'application/json'}
+    params = {
+        'api_key': CONFIG['TMDB_API_KEY'],
+        'query': name,
+    }
+    response = requests.get(ENDPOINT, params=params, headers=headers)
+    results = json.loads(response.content.decode('utf-8'))['results']
+    for r in results:
         if r['release_date'].split('-')[0] == year:
             return r['original_title']
     return name
