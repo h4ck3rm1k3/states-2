@@ -23,6 +23,9 @@ def get_config(cfgfile):
     return config
 
 
+CONFIG = get_config(CONFIG_FILE)
+
+
 def get_canonical_name(name):
     """
     Translates a dotted filename into the real name with spaces while
@@ -78,8 +81,6 @@ def mkdirp(path, mode=0755):
 
 
 def main(job_dir, nzb, clean, index_num, category, group, status):
-    config = get_config(CONFIG_FILE)
-
     # Loop through the files in ``job_dir``, trying to find one which
     # matches PATTERN. Also build a list of files and their sizes.
     #
@@ -118,7 +119,7 @@ def main(job_dir, nzb, clean, index_num, category, group, status):
     fn = os.path.join(job_dir, fn)
     dotted_name = string.capwords(match.group(1), '.').replace('_', '.')
     canonical_name = get_canonical_name(dotted_name)
-    show_dir = os.path.join(config['tv_directory'], canonical_name)
+    show_dir = os.path.join(CONFIG['tv_directory'], canonical_name)
     season_dir = os.path.join(show_dir, 'Season %s' % int(match.group(2)))
 
     vfile = "%s.s%se%s.%s" % (dotted_name, match.group(2), match.group(3), ext)
