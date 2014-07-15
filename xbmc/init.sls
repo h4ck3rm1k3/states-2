@@ -28,7 +28,7 @@ xbmc:
 /etc/init/ir-keytable.conf:
   file.managed:
     - source: salt://xbmc/ir-keytable.conf
-    - mode: 755
+    - mode: 644
 
 /etc/iptables.d/50-xbmc.txt:
   file.managed:
