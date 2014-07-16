@@ -37,7 +37,7 @@
     SSLEngine on
     SSLProtocol -ALL -SSLv3 +TLSv1 +TLSv1.1 +TLSv1.2
     SSLHonorCipherOrder On
-    SSLCipherSuite EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+aRSA+RC4:EECDH:EDH+aRSA:RC4:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS:!MEDIUM
+    SSLCipherSuite EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5
     SSLCertificateFile /etc/ssl/certs/wildcard_public_cert.crt
     SSLCertificateKeyFile /etc/ssl/private/wildcard_private.key
     SSLCACertificateFile /etc/ssl/certs/wildcard_ca.pem
