@@ -49,7 +49,7 @@ xbmc:
     - group: root
     - mode: 644
 
-/lib/udev/rc_keymaps/rc6_mce:
+/etc/rc_keymaps/rc6_mce:
   file.managed:
     - source: salt://xbmc/rc_keymaps/rc6_mce
     - user: root
