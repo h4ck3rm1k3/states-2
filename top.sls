@@ -26,13 +26,20 @@ base:
     - apache
     - fstab
     - madsonic
+    - mysql.server
+    - mysql.client
+    - mysql.database
+    - mysql.user
     - sabnzbd
     - sickbeard
     - smartmontools
     - unbound
   'iron.djl.im':
     - apache
-    - mysql
+    - mysql.server
+    - mysql.client
+    - mysql.database
+    - mysql.user
     - php
     - salt.master
     - znc
