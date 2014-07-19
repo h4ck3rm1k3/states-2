@@ -8,5 +8,5 @@ for x in $REPOS; do
     cd "$BASE/$x"
     git fetch
     /bin/echo -n "$(basename $x): "
-    git reset --hard origin/master
+    git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)
 done
