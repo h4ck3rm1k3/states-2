@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import os
+import shutil
 import sys
 
 BASE = '/etc/salt/pillars'
@@ -12,7 +13,10 @@ DIRS = [
 
 for d in DIRS:
     d = os.path.join(BASE, d)
+    if not os.path.isdir(d):
+        continue
+
     for fn in sorted(os.listdir(d)):
         with open(os.path.join(d, fn)) as fh:
-            for line in fh:
-                sys.stdout.write(line + '\n')
+            shutil.copyfileobj(fh, sys.stdout)
+        sys.stdout.write("\n")
