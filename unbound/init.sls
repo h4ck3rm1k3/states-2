@@ -6,6 +6,7 @@ unbound:
     - enable: True
     - require:
       - pkg: unbound
+    - sig: /usr/sbin/unbound
     - watch:
       - file: /etc/unbound/unbound.conf
 
