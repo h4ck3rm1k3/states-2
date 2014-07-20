@@ -23,6 +23,13 @@ salt-master:
     - require:
         - file: /etc/iptables.d
 
+/usr/bin/simpillar:
+  file.managed:
+    - source: salt://salt/bin/simpillar
+    - mode: 700
+    - user: root
+    - group: root
+
 /usr/bin/ups:
   file.managed:
     - source: salt://salt/bin/ups

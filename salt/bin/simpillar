@@ -1,0 +1,18 @@
+#!/usr/bin/env python
+import os
+import sys
+
+BASE = '/etc/salt/pillars'
+HOSTS_DIR = 'hosts'
+RFQDN = '/'.join(reversed(sys.argv[1].split('.')))
+DIRS = [
+    'common',
+    os.path.join(HOSTS_DIR, RFQDN)
+]
+
+for d in DIRS:
+    d = os.path.join(BASE, d)
+    for fn in sorted(os.listdir(d)):
+        with open(os.path.join(d, fn)) as fh:
+            for line in fh:
+                sys.stdout.write(line + '\n')
