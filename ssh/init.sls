@@ -13,7 +13,7 @@ ssh:
     - source: salt://ssh/sshd_config.jinja
     - template: jinja
 
-/etc/iptables.d/ssh.txt:
+/etc/iptables.d/50-ssh.txt:
   file.managed:
     - source: salt://ssh/iptables/50-ssh.txt
     - require:
