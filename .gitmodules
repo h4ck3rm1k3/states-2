@@ -7,3 +7,6 @@
 [submodule "_formulas/motd"]
 	path = _formulas/motd
 	url = https://github.com/djl/motd-formula
+[submodule "_formulas/timezone"]
+	path = _formulas/timezone
+	url = https://github.com/djl/timezone-formula
