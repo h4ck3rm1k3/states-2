@@ -1,7 +1,7 @@
-[submodule "formulas/mysql"]
+[submodule "_formulas/mysql"]
 	path = _formulas/mysql
     url = https://github.com/saltstack-formulas/mysql-formula
-[submodule "formulas/apt"]
+[submodule "_formulas/apt"]
 	path = _formulas/apt
 	url = https://github.com/bechtoldt/apt-formula
 [submodule "_formulas/motd"]
