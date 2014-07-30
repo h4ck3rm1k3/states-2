@@ -22,27 +22,19 @@ base:
     - match: grain
     - debsecan
     - apticron
-  'helium.djl.im':
+  'helium.djl.io':
     - apache
     - fstab
     - madsonic
-    - mysql.server
-    - mysql.client
-    - mysql.database
-    - mysql.user
     - sabnzbd
     - sickbeard
     - smartmontools
     - unbound
-  'iron.djl.im':
+  'iron.djl.io':
     - apache
-    - mysql.server
-    - mysql.client
-    - mysql.database
-    - mysql.user
     - php
     - salt.master
     - znc
-  'neon.djl.im':
+  'neon.djl.io':
     - fstab
     - xbmc
