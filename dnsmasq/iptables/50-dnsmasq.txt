@@ -1,6 +1,0 @@
-*filter
-
-# dnsmasq
--A INPUT -d 10.8.0.1 -p udp --dport 53 -j ACCEPT
-
-COMMIT
