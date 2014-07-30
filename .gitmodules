@@ -4,3 +4,6 @@
 [submodule "formulas/apt"]
 	path = _formulas/apt
 	url = https://github.com/bechtoldt/apt-formula
+[submodule "_formulas/motd"]
+	path = _formulas/motd
+	url = https://github.com/djl/motd-formula
