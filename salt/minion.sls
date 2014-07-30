@@ -10,6 +10,7 @@ salt-minion:
 /etc/salt/minion:
   file.managed:
     - source: salt://salt/minion.conf
+    - template: jinja
     - mode: 640
     - user: root
     - group: root
