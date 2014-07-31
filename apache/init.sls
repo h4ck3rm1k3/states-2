@@ -93,6 +93,14 @@ apache2:
     - require:
       - pkg: /etc/apache2/sites-enabled
 {% endif %}
+
+{% if args.get('default', False) %}
+/etc/apache2/sites-enabled/000-default:
+    file.symlink:
+    - target: /etc/apache2/sites-available/{{ args.fqdn }}.conf
+    - require:
+      - file: /etc/apache2/sites-enabled
+{% endif %}
 {% endfor %}
 
 {% for module in pillar.get('apache.modules', []) %}
