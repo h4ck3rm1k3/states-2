@@ -32,6 +32,10 @@ base:
     - unbound
   'iron.djl.io':
     - apache
+    - mysql.server
+    - mysql.client
+    - mysql.database
+    - mysql.user
     - php
     - salt.master
     - znc
