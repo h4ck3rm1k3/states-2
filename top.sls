@@ -13,7 +13,7 @@ base:
     - salt.minion
     - ssh
     - sudo
-    - timezones
+    - timezone
     - users
   'os_family:Debian':
     - match: grain
