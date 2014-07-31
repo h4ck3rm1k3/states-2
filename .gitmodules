@@ -10,3 +10,6 @@
 [submodule "_formulas/timezone"]
 	path = _formulas/timezone
 	url = https://github.com/djl/timezone-formula
+[submodule "_formulas/ntp"]
+	path = _formulas/ntp
+	url = https://github.com/saltstack-formulas/ntp-formula
