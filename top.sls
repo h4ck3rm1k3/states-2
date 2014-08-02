@@ -3,7 +3,6 @@ base:
     - iptables
     - logcheck
     - logrotate
-    - monit
     - motd
     - ntp
     - packages

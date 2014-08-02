@@ -46,12 +46,6 @@ apache2:
     - require:
       - file: /etc/iptables.d
 
-/etc/monit/conf.d/apache2:
-  file.managed:
-    - source: salt://apache/monit/apache2
-    - require:
-      - pkg: monit
-
 /etc/logrotate.d/apache2:
   file.managed:
     - source: salt://apache/logrotate/apache2
