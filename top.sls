@@ -8,7 +8,6 @@ base:
     - packages
     - pam
     - postfix
-    - salt.common
     - salt.minion
     - ssh
     - sudo

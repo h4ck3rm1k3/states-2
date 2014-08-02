@@ -1,3 +1,6 @@
+include:
+  - salt.common
+
 salt-master:
   pkg:
     - installed
