@@ -15,6 +15,9 @@ CONFIG_FILE = '/etc/sabnzbd/scripts.conf'
 EXTENSIONS = ['avi', 'm4v', 'mkv', 'mp4']
 SUB_EXTENSIONS = ['idx', 'sub', 'srt']
 PATTERN = re.compile('^(.*)(\d{4})\.(.*)', re.I)
+REPLACEMENTS = {
+    ':': '',
+}
 ENDPOINT = 'https://api.themoviedb.org/3/search/movie'
 
 
@@ -92,6 +95,10 @@ def get_canonical_name(name, year):
 
     # replace trailing dots
     canonical_name = re.sub('\.+$', '', canonical_name)
+
+    # replace unsuitable characters
+    for k, v in REPLACEMENTS.items():
+        canonical_name = canonical_name.replace(k, v)
 
     return canonical_name
 
