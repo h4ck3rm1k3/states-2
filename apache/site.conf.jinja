@@ -1,5 +1,5 @@
 <VirtualHost *:80>
-    ServerName {{ args.fqdn }}
+    ServerName {{ fqdn }}
     {%- if 'aliases' in args %}
     ServerAlias {{ args.aliases|join(" ") }}
     {%- endif %}
@@ -10,17 +10,17 @@
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
     {%- endif %}
 
-    DocumentRoot /var/www/{{ args.fqdn }}
+    DocumentRoot /var/www/{{ fqdn }}
     Options -Indexes
 
-    ErrorLog /var/log/apache2/{{ args.fqdn }}/error.log
-    CustomLog /var/log/apache2/{{ args.fqdn }}/access.log common
+    ErrorLog /var/log/apache2/{{ fqdn }}/error.log
+    CustomLog /var/log/apache2/{{ fqdn }}/access.log common
 
     {%- for k, v in args.get('custom_options', {}).items() %}
     {{ k }} {{ v }}
     {%- endfor %}
 
-    <Directory /var/www/{{ args.fqdn }}>
+    <Directory /var/www/{{ fqdn }}>
         AllowOverride All
         Order allow,deny
         allow from all
@@ -29,7 +29,7 @@
 
 {% if args.get('ssl', False) %}
 <VirtualHost *:443>
-    ServerName {{ args.fqdn }}
+    ServerName {{ fqdn }}
     {%- if 'aliases' in args %}
     ServerAlias {{ args.aliases|join(" ") }}
     {%- endif %}
@@ -46,18 +46,18 @@
     {%- if 'document_root' in args %}
     DocumentRoot {{ args.document_root }}
     {%- else %}
-    DocumentRoot /var/www/{{ args.fqdn }}
+    DocumentRoot /var/www/{{ fqdn }}
     {%- endif %}
     Options -Indexes
 
-    ErrorLog /var/log/apache2/{{ args.fqdn }}/error.log
-    CustomLog /var/log/apache2/{{ args.fqdn }}/access.log common
+    ErrorLog /var/log/apache2/{{ fqdn }}/error.log
+    CustomLog /var/log/apache2/{{ fqdn }}/access.log common
 
     {%- for k, v in args.get('custom_options', {}).items() %}
     {{ k }} {{ v }}
     {%- endfor %}
 
-    <Directory /var/www/{{ args.fqdn }}>
+    <Directory /var/www/{{ fqdn }}>
         AllowOverride All
         Order allow,deny
         allow from all
