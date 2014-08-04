@@ -1,34 +1,65 @@
+#
+# xbmc user and groups
+#
 xbmc:
-  pkg:
-    - installed
+  user.present:
+    - groups:
+      - xbmc
+      - audio
+      - video
+      - plugdev
+    - require:
+      - group: xbmc
+
+  group.present:
+    - groups:
+      - xbmc
+      - audio
+      - video
+      - plugdev
+
+  pkg.installed:
+    - name: xbmc
 
   pkgrepo.managed:
     - ppa: team-xbmc/ppa
     - require_in:
       - pkg: xbmc
 
-/home/xbmc/.xbmc/userdata/Lircmap.xml:
-  file.managed:
-    - user: xbmc
-    - group: xbmc
-    - require:
-      - pkg: xbmc
+#
+# required packages
+#
+xbmc_extra_packages:
+  pkg.installed:
+    - pkgs:
+      - acpi-support
+      - alsa-base
+      - alsa-utils
+      - consolekit
+      - i965-va-driver
+      - linux-sound-base
+      - lirc
+      - pm-utils
+      - policykit-1
+      - udisks
+      - upower
+      - xinit
 
-/home/xbmc/.xbmc/userdata/advancedsettings.xml:
+#
+# config files
+#
+/etc/init/ir-keytable.conf:
   file.managed:
-    - user: xbmc
-    - group: xbmc
-    - require:
-      - pkg: xbmc
+    - source: salt://xbmc/upstart/ir-keytable.conf
+    - mode: 644
+
+/etc/init/xbmc.conf:
+  file.managed:
+    - source: salt://xbmc/upstart/xbmc.conf
 
 /etc/asound.conf:
   file.managed:
     - source: salt://xbmc/asound.conf
-
-/etc/init/ir-keytable.conf:
-  file.managed:
-    - source: salt://xbmc/ir-keytable.conf
-    - mode: 644
 
 /etc/iptables.d/50-xbmc.txt:
   file.managed:
@@ -42,9 +73,9 @@ xbmc:
     - source: salt://xbmc/pm/10_xbmc-update-library
     - mode: 755
 
-/etc/udev/rules.d/90-remote-wake.rules:
+/etc/udev/rules.d/90-enable-remote-wake.rules:
   file.managed:
-    - source: salt://xbmc/udev/90-remote-wake.rules
+    - source: salt://xbmc/udev/90-enable-remote-wake.rules
     - user: root
     - group: root
     - mode: 644
@@ -55,3 +86,21 @@ xbmc:
     - user: root
     - group: root
     - mode: 644
+    - makedirs: True
+
+/home/xbmc/.xbmc/userdata/Lircmap.xml:
+  file.managed:
+    - source: salt://xbmc/xbmc/Lircmap.xml
+    - user: xbmc
+    - group: xbmc
+    - require:
+      - user: xbmc
+      - pkg: xbmc
+
+/home/xbmc/.xbmc/userdata/advancedsettings.xml:
+  file.managed:
+    - source: salt://xbmc/xbmc/advancedsettings.xml
+    - user: xbmc
+    - group: xbmc
+    - require:
+      - pkg: xbmc
