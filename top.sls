@@ -39,4 +39,5 @@ base:
     - znc
   'neon.djl.io':
     - fstab
+    - lirc
     - xbmc

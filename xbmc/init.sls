@@ -38,7 +38,6 @@ xbmc_extra_packages:
       - consolekit
       - i965-va-driver
       - linux-sound-base
-      - lirc
       - pm-utils
       - policykit-1
       - udisks
@@ -48,11 +47,6 @@ xbmc_extra_packages:
 #
 # config files
 #
-/etc/init/ir-keytable.conf:
-  file.managed:
-    - source: salt://xbmc/upstart/ir-keytable.conf
-    - mode: 644
-
 /etc/init/xbmc.conf:
   file.managed:
     - source: salt://xbmc/upstart/xbmc.conf
