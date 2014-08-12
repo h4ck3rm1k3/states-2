@@ -51,10 +51,6 @@ xbmc_extra_packages:
   file.managed:
     - source: salt://xbmc/upstart/xbmc.conf
 
-/etc/asound.conf:
-  file.managed:
-    - source: salt://xbmc/asound.conf
-
 /etc/iptables.d/50-xbmc.txt:
   file.managed:
     - source: salt://xbmc/iptables/50-xbmc.txt
