@@ -92,6 +92,8 @@ def get_canonical_name(name, year):
 
     # look up TMDb for the show name
     canonical_name = get_tmdb_name(canonical_name, year)
+    if not canonical_name:
+        return None
 
     # replace trailing dots
     canonical_name = re.sub('\.+$', '', canonical_name)
@@ -111,10 +113,12 @@ def get_tmdb_name(name, year):
     }
     response = requests.get(ENDPOINT, params=params, headers=headers)
     results = json.loads(response.content.decode('utf-8'))['results']
+    if not results:
+        return None
+
     for r in results:
         if r['release_date'].split('-')[0] == year:
             return r['original_title']
-    return name
 
 
 def mkdirp(path, mode=0755):
@@ -125,9 +129,6 @@ def mkdirp(path, mode=0755):
             pass
         else:
             raise
-
-    for r, _, _ in os.walk(path):
-        os.chmod(os.path.join(path, r), mode)
 
 
 def main(job_dir, nzb, clean, index_num, category, group, status):
@@ -151,6 +152,13 @@ def main(job_dir, nzb, clean, index_num, category, group, status):
 
     dotted_name, year = match.groups()[:2]
     canonical_name = get_canonical_name(dotted_name, year)
+
+    # bail out if TMBd doesn't find anything
+    if not canonical_name:
+        print("Could not find files in TMDb for %s %s" % (dotted_name, year))
+        sys.exit()
+
+
     dotted_name = canonical_name.replace(' ', '.')
 
     base_name = "%s.%s" % (dotted_name, year)
