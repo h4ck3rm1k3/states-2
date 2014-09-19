@@ -118,6 +118,7 @@ def main(job_dir, nzb, clean, index_num, category, group, status):
             sys.exit()
 
     fn = os.path.join(job_dir, fn)
+    ext = fn.rsplit('.', 1)[-1]
     dotted_name = string.capwords(match.group(1), '.').replace('_', '.')
     canonical_name = get_canonical_name(dotted_name)
     show_dir = os.path.join(CONFIG['tv_directory'], canonical_name)
