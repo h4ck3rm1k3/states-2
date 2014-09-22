@@ -12,7 +12,10 @@ from tvdb_exceptions import tvdb_error, tvdb_shownotfound
 
 CONFIG_FILE = '/etc/sabnzbd/scripts.conf'
 EXTENSIONS = ['avi', 'm4v', 'mkv', 'mp4']
-PATTERN = re.compile('^(.*)[\._]s(\d+)e(\d+)(.*)', re.I)
+PATTERNS = [
+    re.compile('^(.*)[\._]s(\d+)e(\d+)(.*)', re.I),
+    re.compile('^(.*)(\d)x(\d+)(.*)', re.I),
+]
 
 
 def get_config(cfgfile):
@@ -98,9 +101,16 @@ def main(job_dir, nzb, clean, index_num, category, group, status):
 
         abs = os.path.abspath(os.path.join(job_dir, fn))
         files_by_size.append((fn, os.path.getsize(abs)))
-        match = PATTERN.match(fn)
+        match = None
+
+        for pattern in PATTERNS:
+            match = pattern.match(fn)
+            if match:
+                break
+
         if match:
             break
+
 
     files_by_size = sorted(files_by_size, key=lambda x: x[1])
 
@@ -112,19 +122,30 @@ def main(job_dir, nzb, clean, index_num, category, group, status):
 
         # found a potential match
         fn = files_by_size[0][0]
-        match = PATTERN.match(os.path.basename(job_dir))
+        match = None
+
+        for pattern in PATTERNS:
+            match = pattern.match(os.path.basename(job_dir))
+
         if not match:
             print("No suitable files found")
             sys.exit()
 
     fn = os.path.join(job_dir, fn)
     ext = fn.rsplit('.', 1)[-1]
-    dotted_name = string.capwords(match.group(1), '.').replace('_', '.')
+
+    show_name, season_num, episode_num, _ = match.groups()
+
+    dotted_name = string.capwords(show_name, '.').replace('_', '.')
     canonical_name = get_canonical_name(dotted_name)
+    dotted_name = canonical_name.replace(' ', '.')
     show_dir = os.path.join(CONFIG['tv_directory'], canonical_name)
     season_dir = os.path.join(show_dir, 'Season %s' % int(match.group(2)))
 
-    vfile = "%s.s%se%s.%s" % (dotted_name, match.group(2), match.group(3), ext)
+    season_num = match.group(2).zfill(2)
+    episode_num = match.group(3).zfill(2)
+
+    vfile = "%s.s%se%s.%s" % (dotted_name, season_num, episode_num, ext)
     final_name = os.path.join(season_dir, vfile)
     if os.path.isfile(final_name):
         print("File already exists: %s" % final_name)
