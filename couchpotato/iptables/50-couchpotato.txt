@@ -1,0 +1,6 @@
+*filter
+
+# couchpotato
+-A INPUT -p tcp --dport {{ pillar.get('couchpotato.port', '5050') }} -j ACCEPT
+
+COMMIT

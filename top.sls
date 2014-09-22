@@ -22,6 +22,7 @@ base:
     - apticron
   'helium.djl.io':
     - apache
+    - couchpotato
     - fstab
     - madsonic
     - sabnzbd
