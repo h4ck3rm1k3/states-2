@@ -126,6 +126,8 @@ def main(job_dir, nzb, clean, index_num, category, group, status):
 
         for pattern in PATTERNS:
             match = pattern.match(os.path.basename(job_dir))
+            if match:
+                break
 
         if not match:
             print("No suitable files found")
