@@ -57,8 +57,8 @@ def get_canonical_name(name):
     # look up TheTVDB for the show name
     canonical_name = get_tvdb_name(canonical_name)
 
-    # replace trailing dots
-    canonical_name = re.sub('\.+$', '', canonical_name)
+    # strip trailing non-alphanumeric characters
+    canonical_name = re.sub('[^0-9a-zA-Z]+$', '', canonical_name)
 
     return canonical_name
 
