@@ -1,0 +1,7 @@
+couchpotato:
+  user: couchpotato
+  home: /usr/share/couchpotato
+  data: /var/lib/couchpotato
+  pidfile: /var/run/couchpotato/couchpotato.pid
+  port: 5050
+  repo: https://github.com/RuudBurger/CouchPotatoServer.git
