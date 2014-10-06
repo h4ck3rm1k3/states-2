@@ -46,20 +46,21 @@ def get_matching_files(dirname):
         'by_size': [],
         'subs': [],
     }
-    for fn in os.listdir(dirname):
-        ext = fn.rsplit('.', 1)[-1]
-        if ext in SUB_EXTENSIONS:
-            files['subs'].append(fn)
+    for root, _, fns in os.walk(dirname):
+        for fn in fns:
+            ext = fn.rsplit('.', 1)[-1].lower()
+            if ext in SUB_EXTENSIONS:
+                files['subs'].append(fn)
 
-        if ext not in EXTENSIONS:
-            continue
+            if ext not in EXTENSIONS:
+                continue
 
-        abs = os.path.abspath(os.path.join(dirname, fn))
-        files['by_size'].append((fn, os.path.getsize(abs)))
-        match = PATTERN.match(fn)
-        if match:
-            files['match'] = (abs, match)
-            break
+            abs = os.path.abspath(os.path.join(root, fn))
+            files['by_size'].append((fn, os.path.getsize(abs)))
+            match = PATTERN.match(fn)
+            if match:
+                files['match'] = (abs, match)
+                break
 
     files['by_size'] = sorted(files['by_size'], key=lambda x: x[1])
 
