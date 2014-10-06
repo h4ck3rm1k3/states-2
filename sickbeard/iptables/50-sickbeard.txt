@@ -1,6 +1,6 @@
 *filter
 
 # Sickbeard
--A INPUT -p tcp --dport {{ pillar.get('sickbeard.port', '8888') }} -j ACCEPT
+-A INPUT -p tcp --dport {{ port }} -j ACCEPT
 
 COMMIT

@@ -29,6 +29,8 @@ sickbeard_dependencies:
   file.managed:
     - source: salt://sickbeard/iptables/50-sickbeard.txt
     - template: jinja
+    - context:
+        user: {{ port }}
     - require:
         - file: /etc/iptables.d
 
