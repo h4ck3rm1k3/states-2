@@ -30,7 +30,7 @@ sickbeard_dependencies:
     - source: salt://sickbeard/iptables/50-sickbeard.txt
     - template: jinja
     - context:
-        user: {{ port }}
+        port: {{ port }}
     - require:
         - file: /etc/iptables.d
 
