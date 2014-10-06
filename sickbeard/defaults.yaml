@@ -1,0 +1,7 @@
+sickbeard:
+  user: sickbeard
+  home: /usr/share/sickbeard
+  data: /var/lib/sickbeard
+  pidfile: /var/run/sickbeard/sickbeard.pid
+  port: 8888
+  repo: https://github.com/midgetspy/Sick-Beard.git
