@@ -1,6 +1,6 @@
 *filter
 
 # SABnzbd
--A INPUT -p tcp --dport {{ pillar.get('sabnzbd_port', '7777') }} -j ACCEPT
+-A INPUT -p tcp --dport {{ pillar.get('sabnzbd_port', '8080') }} -j ACCEPT
 
 COMMIT
