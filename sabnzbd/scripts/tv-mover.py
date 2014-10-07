@@ -6,6 +6,7 @@ import re
 import shutil
 import string
 import sys
+
 import tvdb_api
 from tvdb_exceptions import tvdb_error, tvdb_shownotfound
 
@@ -58,7 +59,7 @@ def get_canonical_name(name):
     canonical_name = get_tvdb_name(canonical_name)
 
     # strip trailing non-alphanumeric characters
-    canonical_name = re.sub('[^0-9a-zA-Z]+$', '', canonical_name)
+    canonical_name = re.sub('[^0-9a-zA-Z\(\)]+$', '', canonical_name)
 
     return canonical_name
 
