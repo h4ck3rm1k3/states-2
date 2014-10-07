@@ -1,6 +1,7 @@
 {% set user = salt['defaults.get']('sickbeard:user') %}
 {% set home = salt['defaults.get']('sickbeard:home') %}
 {% set data = salt['defaults.get']('sickbeard:data') %}
+{% set shows = salt['defaults.get']('sickbeard:shows') %}
 {% set pidfile = salt['defaults.get']('sickbeard:pidfile') %}
 {% set port = salt['defaults.get']('sickbeard:port') %}
 {% set repo = salt['defaults.get']('sickbeard:repo') %}
@@ -59,6 +60,16 @@ sickbeard_dependencies:
   file.directory:
     - user: {{ user }}
     - group: {{ user }}
+    - makedirs: True
+    - require:
+      - user: {{ user }}
+      - group: {{ user }}
+
+{{ shows }}:
+  file.directory:
+    - user: {{ user }}
+    - group: {{ user }}
+    - makedirs: True
     - require:
       - user: {{ user }}
       - group: {{ user }}
