@@ -1,5 +1,5 @@
 #!/bin/sh
-#/ Usage: madsonic-rescan [options] <URL> <username> <password>
+#/ Usage: subsonic-rescan [options] <URL> <username> <password>
 #/
 #/ Options:
 #/   -s               Scan type (full|full-clean|clean|quick)
@@ -39,6 +39,7 @@ if [ $# -ne 3 ]; then
   exit 1
 fi
 
-COOKIE_JAR="/tmp/madsonic-cookies.$RANDOM.txt"
+COOKIE_JAR="/tmp/subsonic-cookies.$RANDOM.txt"
 curl -s --data "j_username=$2&j_password=$3" "$1/j_acegi_security_check" --cookie-jar "$COOKIE_JAR"
 curl -s --cookie "$COOKIE_JAR" "$1/musicFolderSettings.view?scanNow" > /dev/null
+rm $COOKIE_JAR

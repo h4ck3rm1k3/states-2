@@ -1,26 +1,26 @@
-{% set user = salt['defaults.get']('madsonic:user') %}
-{% set port = salt['defaults.get']('madsonic:port') %}
+{% set user = salt['defaults.get']('subsonic:user') %}
+{% set port = salt['defaults.get']('subsonic:port') %}
 
-/etc/default/madsonic:
+/etc/default/subsonic:
   file.managed:
-    - source: salt://madsonic/madsonic.default.jinja
+    - source: salt://subsonic/subsonic.default.jinja
     - template: jinja
     - context:
         user: {{ user }}
         port: {{ port }}
 
-/etc/iptables.d/50-madsonic.txt:
+/etc/iptables.d/50-subsonic.txt:
   file.managed:
-    - source: salt://madsonic/iptables/50-madsonic.txt
+    - source: salt://subsonic/iptables/50-subsonic.txt
     - template: jinja
     - context:
         port: {{ port }}
     - require:
       - file: /etc/iptables.d
 
-/usr/bin/madsonic-rescan:
+/usr/bin/subsonic-rescan:
   file.managed:
-    - source: salt://madsonic/bin/madsonic-rescan
+    - source: salt://subsonic/bin/subsonic-rescan
     - mode: 755
     - user: root
     - group: root
@@ -37,4 +37,3 @@
 
   group:
     - present
-

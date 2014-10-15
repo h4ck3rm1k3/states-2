@@ -1,0 +1,3 @@
+subsonic:
+  user: subsonic
+  port: 4040

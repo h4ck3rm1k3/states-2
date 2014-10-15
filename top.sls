@@ -24,8 +24,8 @@ base:
     - apache
     - couchpotato
     - fstab
-    - madsonic
     - sabnzbd
+    - subsonic
     - sickbeard
     - smartmontools
     - unbound

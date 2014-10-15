@@ -1,6 +1,6 @@
 *filter
 
-# madsonic
+# subsonic
 -A INPUT -p tcp --dport {{ port }} -j ACCEPT
 
 COMMIT
