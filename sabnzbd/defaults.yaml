@@ -1,0 +1,6 @@
+sabnzbd:
+  user: sabnzbd
+  home: /usr/share/sabnzbd
+  data: /var/lib/sabnzbd
+  pidfile: /var/run/sabnzbd/sabnzbd.pid
+  port: 8080
