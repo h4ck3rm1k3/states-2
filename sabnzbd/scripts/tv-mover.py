@@ -11,7 +11,7 @@ import tvdb_api
 from tvdb_exceptions import tvdb_error, tvdb_shownotfound
 
 
-CONFIG_FILE = '/etc/sabnzbd/scripts.conf'
+CONFIG_FILE = 'scripts.conf'
 EXTENSIONS = ['avi', 'm4v', 'mkv', 'mp4']
 PATTERNS = [
     re.compile('^(.*)[\._]s(\d+)e(\d+)(.*)', re.I),
@@ -20,6 +20,8 @@ PATTERNS = [
 
 
 def get_config(cfgfile):
+    if not cfgfile.startswith('/'):
+        cfgfile = os.path.join(os.path.dirname(sys.argv[0]), cfgfile)
     config = {}
     with open(cfgfile) as fh:
         for line in fh:
