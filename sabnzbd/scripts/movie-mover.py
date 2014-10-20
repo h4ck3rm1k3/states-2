@@ -23,7 +23,8 @@ ENDPOINT = 'https://api.themoviedb.org/3/search/movie'
 
 def get_config(cfgfile):
     if not cfg.startswith('/'):
-        cfgfile = os.path.join(os.path.dirname(sys.argv[0]), cfgfile)
+        cfgfile = os.path.join(os.path.dirname(sys.argv[0]), '..', cfgfile)
+
     config = {}
     with open(cfgfile) as fh:
         for line in fh:

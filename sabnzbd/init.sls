@@ -4,6 +4,18 @@
 {% set pidfile = salt['pillar.get']('sabnzbd:pidfile', '/var/run/sabnzbd/sabnzbd.pid') %}
 {% set port = salt['pillar.get']('sabnzbd:port', '8080') %}
 
+sabnzbdplus_dependencies:
+  pkg.installed:
+    - names:
+      - python-cheetah
+      - python-openssl
+      - python-requests
+      - python-tvdb-api
+      - python-yenc
+      - par2
+      - unrar
+      - unzip
+
 /etc/init.d/sabnzbd:
   file.managed:
     - source: salt://sabnzbd/sabnzbd.init
