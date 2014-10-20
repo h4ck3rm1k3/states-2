@@ -1,6 +1,11 @@
 {% set user = salt['defaults.get']('subsonic:user') %}
 {% set port = salt['defaults.get']('subsonic:port') %}
 
+subsonic_dependencies:
+  pkg.installed:
+    - names:
+      - openjdk-6-jre
+
 /etc/default/subsonic:
   file.managed:
     - source: salt://subsonic/subsonic.default.jinja
