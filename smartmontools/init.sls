@@ -4,7 +4,7 @@ smartmontools:
   service:
     - running
 
-/etc/defaults/smartmontools:
+/etc/default/smartmontools:
   file.managed:
     - source: salt://smartmontools/smartmontools.conf
     - user: root
