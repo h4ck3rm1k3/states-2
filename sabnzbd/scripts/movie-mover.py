@@ -22,7 +22,7 @@ ENDPOINT = 'https://api.themoviedb.org/3/search/movie'
 
 
 def get_config(cfgfile):
-    if not cfg.startswith('/'):
+    if not cfgfile.startswith('/'):
         cfgfile = os.path.join(os.path.dirname(sys.argv[0]), '..', cfgfile)
 
     config = {}
@@ -135,7 +135,7 @@ def mkdirp(path, mode=0755):
             raise
 
 
-def main(job_dir, nzb, clean, index_num, category, group, status):
+def main(job_dir, category):
     files = get_matching_files(job_dir)
 
     if files['match']:
@@ -194,4 +194,4 @@ def main(job_dir, nzb, clean, index_num, category, group, status):
 
 
 if __name__ == '__main__':
-    main(*sys.argv[1:])
+    main(sys.argv[1], sys.argv[5])

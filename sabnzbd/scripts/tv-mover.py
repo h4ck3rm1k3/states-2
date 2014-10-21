@@ -88,7 +88,7 @@ def mkdirp(path, mode=0755):
         os.chmod(os.path.join(path, r), mode)
 
 
-def main(job_dir, nzb, clean, index_num, category, group, status):
+def main(job_dir, category):
     # Loop through the files in ``job_dir``, trying to find one which
     # matches PATTERN. Also build a list of files and their sizes.
     #
@@ -179,4 +179,4 @@ def main(job_dir, nzb, clean, index_num, category, group, status):
 
 
 if __name__ == '__main__':
-    main(*sys.argv[1:])
+    main(sys.argv[1], sys.argv[5])
