@@ -1,8 +1,13 @@
 basepkgs:
   pkg.installed:
     - pkgs:
-        - git
-        - vim
+      - curl
+      - git
+      - vim
+
+  pkg.purged:
+    - pkgs:
+      - nano
 
 {%- if pillar.get('extra_packages', []) %}
 extra_packages:
