@@ -162,7 +162,6 @@ def main(job_dir, category):
         print("Could not find files in TMDb for %s %s" % (dotted_name, year))
         sys.exit()
 
-
     dotted_name = canonical_name.replace(' ', '.')
 
     base_name = "%s.%s" % (dotted_name, year)

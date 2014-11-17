@@ -15,7 +15,7 @@ CONFIG_FILE = 'scripts.conf'
 EXTENSIONS = ['avi', 'm4v', 'mkv', 'mp4']
 PATTERNS = [
     re.compile('^(.*)[\._]s(\d+)e(\d+)(.*)', re.I),
-    re.compile('^(.*)(\d)x(\d+)(.*)', re.I),
+    re.compile('^(.*)[\._](\d+)x(\d+)(.*)', re.I),
 ]
 
 
@@ -114,7 +114,6 @@ def main(job_dir, category):
 
         if match:
             break
-
 
     files_by_size = sorted(files_by_size, key=lambda x: x[1])
 
