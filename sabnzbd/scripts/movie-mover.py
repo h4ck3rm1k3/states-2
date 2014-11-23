@@ -37,7 +37,7 @@ CONFIG = get_config(CONFIG_FILE)
 
 
 def get_matching_files(dirname):
-    # Loop through the files in ``job_dir``, trying to find one which
+    # Loop through the files in ``dirname``, trying to find one which
     # matches PATTERN. Also build a list of files and their sizes.
     #
     # If no files match PATTERN but we do find one or more files with
@@ -53,7 +53,7 @@ def get_matching_files(dirname):
         for fn in fns:
             ext = fn.rsplit('.', 1)[-1].lower()
             if ext in SUB_EXTENSIONS:
-                files['subs'].append(fn)
+                files['subs'].append(os.path.join(root, fn))
 
             if ext not in EXTENSIONS:
                 continue
