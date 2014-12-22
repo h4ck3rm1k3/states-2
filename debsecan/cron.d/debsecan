@@ -1,3 +1,0 @@
-MAILTO=root
-
-0 * * * * daemon /usr/bin/debsecan --cron --format packages --only-fixed --suite `lsb_release -c | awk {'print $2'}`
