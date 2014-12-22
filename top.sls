@@ -10,7 +10,6 @@ base:
     - postfix
     - salt.minion
     - ssh
-    - sudo
     - timezone
     - users
   'os_family:Debian':

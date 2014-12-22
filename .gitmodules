@@ -13,3 +13,6 @@
 [submodule "_formulas/ntp"]
 	path = _formulas/ntp
 	url = https://github.com/saltstack-formulas/ntp-formula
+[submodule "_formulas/users"]
+	path = _formulas/users
+	url = https://github.com/saltstack-formulas/users-formula
