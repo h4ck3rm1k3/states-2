@@ -78,7 +78,7 @@ xbmc_extra_packages:
     - mode: 644
     - makedirs: True
 
-/home/xbmc/.xbmc/userdata/Lircmap.xml:
+/home/xbmc/.kodi/userdata/Lircmap.xml:
   file.managed:
     - source: salt://xbmc/xbmc/Lircmap.xml
     - user: xbmc
@@ -87,7 +87,7 @@ xbmc_extra_packages:
       - user: xbmc
       - pkg: xbmc
 
-/home/xbmc/.xbmc/userdata/advancedsettings.xml:
+/home/xbmc/.kodi/userdata/advancedsettings.xml:
   file.managed:
     - source: salt://xbmc/xbmc/advancedsettings.xml
     - user: xbmc
