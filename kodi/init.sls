@@ -22,7 +22,7 @@ kodi:
     - name: kodi
 
   pkgrepo.managed:
-    - ppa: team-kodi/ppa
+    - ppa: team-xbmc/ppa
     - require_in:
       - pkg: kodi
 
