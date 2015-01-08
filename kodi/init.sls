@@ -1,35 +1,35 @@
 #
-# xbmc user and groups
+# kodi user and groups
 #
-xbmc:
+kodi:
   user.present:
     - groups:
-      - xbmc
+      - kodi
       - audio
       - video
       - plugdev
     - require:
-      - group: xbmc
+      - group: kodi
 
   group.present:
     - groups:
-      - xbmc
+      - kodi
       - audio
       - video
       - plugdev
 
   pkg.installed:
-    - name: xbmc
+    - name: kodi
 
   pkgrepo.managed:
-    - ppa: team-xbmc/ppa
+    - ppa: team-kodi/ppa
     - require_in:
-      - pkg: xbmc
+      - pkg: kodi
 
 #
 # required packages
 #
-xbmc_extra_packages:
+kodi_extra_packages:
   pkg.installed:
     - pkgs:
       - acpi-support
@@ -47,50 +47,50 @@ xbmc_extra_packages:
 #
 # config files
 #
-/etc/init/xbmc.conf:
+/etc/init/kodi.conf:
   file.managed:
-    - source: salt://xbmc/upstart/xbmc.conf
+    - source: salt://kodi/upstart/kodi.conf
 
-/etc/iptables.d/50-xbmc.txt:
+/etc/iptables.d/50-kodi.txt:
   file.managed:
-    - source: salt://xbmc/iptables/50-xbmc.txt
+    - source: salt://kodi/iptables/50-kodi.txt
     - template: jinja
     - require:
       - file: /etc/iptables.d
 
-/etc/pm/sleep.d/10_xbmc-update-library:
+/etc/pm/sleep.d/10_kodi-update-library:
   file.managed:
-    - source: salt://xbmc/pm/10_xbmc-update-library
+    - source: salt://kodi/pm/10_kodi-update-library
     - mode: 755
 
 /etc/udev/rules.d/90-enable-remote-wake.rules:
   file.managed:
-    - source: salt://xbmc/udev/90-enable-remote-wake.rules
+    - source: salt://kodi/udev/90-enable-remote-wake.rules
     - user: root
     - group: root
     - mode: 644
 
 /etc/rc_keymaps/rc6_mce:
   file.managed:
-    - source: salt://xbmc/rc_keymaps/rc6_mce
+    - source: salt://kodi/rc_keymaps/rc6_mce
     - user: root
     - group: root
     - mode: 644
     - makedirs: True
 
-/home/xbmc/.kodi/userdata/Lircmap.xml:
+/home/kodi/.kodi/userdata/Lircmap.xml:
   file.managed:
-    - source: salt://xbmc/xbmc/Lircmap.xml
-    - user: xbmc
-    - group: xbmc
+    - source: salt://kodi/kodi/Lircmap.xml
+    - user: kodi
+    - group: kodi
     - require:
-      - user: xbmc
-      - pkg: xbmc
+      - user: kodi
+      - pkg: kodi
 
-/home/xbmc/.kodi/userdata/advancedsettings.xml:
+/home/kodi/.kodi/userdata/advancedsettings.xml:
   file.managed:
-    - source: salt://xbmc/xbmc/advancedsettings.xml
-    - user: xbmc
-    - group: xbmc
+    - source: salt://kodi/kodi/advancedsettings.xml
+    - user: kodi
+    - group: kodi
     - require:
-      - pkg: xbmc
+      - pkg: kodi

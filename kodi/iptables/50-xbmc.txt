@@ -1,0 +1,5 @@
+*filter
+
+-A INPUT -p tcp --dport {{ pillar.get('kodi.port', '8080') }} -j ACCEPT
+
+COMMIT

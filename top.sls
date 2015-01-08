@@ -39,5 +39,5 @@ base:
     - znc
   'neon.djl.io':
     - fstab
+    - kodi
     - lirc
-    - xbmc
