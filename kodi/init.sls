@@ -43,6 +43,7 @@ kodi_extra_packages:
       - udisks
       - upower
       - xinit
+      - xorg
 
 #
 # config files
