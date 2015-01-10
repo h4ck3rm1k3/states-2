@@ -95,3 +95,8 @@ kodi_extra_packages:
     - group: kodi
     - require:
       - pkg: kodi
+
+/var/lib/polkit-1/localauthority/50-local.d/custom-actions.pkla:
+  file.managed:
+    - source: salt://kodi/polkit/custom-actions.pkla
+    - mode: 644
