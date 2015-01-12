@@ -166,7 +166,6 @@ def main(job_dir, category):
 
     base_name = "%s.%s" % (dotted_name, year)
     for fn in [fn] + files['subs']:
-        fn = os.path.basename(fn)
         ext = fn.rsplit('.', 1)[-1]
         final_name = os.path.join(CONFIG['movies_directory'], base_name + '.' + ext)
         if os.path.isfile(final_name):
